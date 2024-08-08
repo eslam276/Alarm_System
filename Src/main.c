@@ -17,9 +17,39 @@
  */
 
 #include <stdint.h>
+//#include "ErrType.h"
+#include "RCC_Interface.h"
+#include "GPIO_interface.h"
+#include "SYSTICK_interface.h"
+
+void setup(void)
+{
+
+	RCC_AHB1EnableClock(GPIOAEN);
+
+	PinConfig_t PINA5 = {
+
+			.Port = PORTA ,
+			.PinNum = PIN5 ,
+			.Mode = OUTPUT ,
+			.OutputType = PUSH_PULL,
+
+	};
+
+	GPIO_u8PinInit(&PINA5);
+
+}
 
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+	setup();
+
+	while(1)
+	{
+		GPIO_u8SetPinValue(PORTA, PIN5, PIN_HIGH);
+		SYSTICK_DelayMs(1000);
+		GPIO_u8SetPinValue(PORTA, PIN5, PIN_LOW);
+		SYSTICK_DelayMs(1000);
+
+	}
 }

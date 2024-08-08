@@ -1,3 +1,6 @@
+"./Src/GPIO_prog.o"
+"./Src/RCC_Program.o"
+"./Src/SYSTICK_prg.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
