@@ -1,2 +1,0 @@
-../Src/SYSTICK_prg.c:13:6:SYSTICK_DelayMs	16	static
-../Src/SYSTICK_prg.c:35:6:SYSTICK_DelayUs	16	static

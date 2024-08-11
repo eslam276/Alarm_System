@@ -18,48 +18,49 @@
 
 #include <stdint.h>
 //#include "ErrType.h"
-#include "RCC_Interface.h"
+#include "RCC_interface.h"
 #include "GPIO_interface.h"
-#include "SYSTICK_interface.h"
+#include "SYSTIC_interface.h"
 #include "USART_interface.h"
 
 void setup(void)
 {
 
-	RCC_AHB1EnableClock(GPIOAEN);
-	RCC_APB1EnableClock(USART2EN);
+	 RCC_AHB1EnableClk(AHB1_GPIOA);
+	 RCC_APB1Enable(APB1_USART2);
+
+
+	 GPIO_PIN_CFG_t PINA5 =
+	 {
+			 .Port = PORTA ,
+			 .PinNum = PIN5 ,
+			 .Mode = OUTPUT ,
+			 .OutputType = PUSH_PULL
+
+	 };
 
 
 
-	PinConfig_t PINA5 = {
 
-			.Port = PORTA ,
-			.PinNum = PIN5 ,
-			.Mode = OUTPUT ,
-			.OutputType = PUSH_PULL,
-
-	};
-
-
-	PinConfig_t USART_TX_PIN = {
+	 GPIO_PIN_CFG_t USART_TX_PIN = {
 			.AltFunc=AF7, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
-			.PinNum=PIN2, .Port=PORTA, .PullType=NOPULL, .Speed=LOW_SPEED
+			.PinNum=PIN2, .Port=PORTA
 	};
 
-	PinConfig_t USART_RX_PIN = {
+	 GPIO_PIN_CFG_t USART_RX_PIN = {
 			.AltFunc=AF7, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
-			.PinNum=PIN3, .Port=PORTA, .PullType=NOPULL, .Speed=LOW_SPEED
+			.PinNum=PIN3, .Port=PORTA
 	};
 
 
 
 
 
-	GPIO_u8PinInit(&USART_TX_PIN);
-	GPIO_u8PinInit(&USART_RX_PIN);
+	 GPIO_u8PinInit(&USART_TX_PIN);
+	 GPIO_u8PinInit(&USART_RX_PIN);
 
 
-	GPIO_u8PinInit(&PINA5);
+	 GPIO_u8PinInit(&PINA5);
 
 }
 
@@ -106,12 +107,12 @@ int main(void)
 
 		if(RX_Data == '1')
 		{
-			GPIO_u8SetPinValue(PORTA, PIN5, PIN_HIGH);
+			GPIO_u8SetPinValue(PORTA, PIN5, HIGH);
 		}
 
 		else if (RX_Data == '2')
 		{
-			GPIO_u8SetPinValue(PORTA, PIN5, PIN_LOW);
+			GPIO_u8SetPinValue(PORTA, PIN5, LOW);
 
 		}
 
