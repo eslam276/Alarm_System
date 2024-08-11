@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 
-#define AHB_CLOCK           8u   /* IN MHz */
+#define AHB_CLOCK           16u   /* IN MHz */
 
 
 uint8_t SYSTIC_delay_ms(uint32_t time);
