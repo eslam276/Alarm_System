@@ -1,0 +1,3 @@
+../Src/Service.c:9:6:Print	16	static
+../Src/Service.c:14:6:Input	16	static
+../Src/Service.c:20:6:SendChar	16	static

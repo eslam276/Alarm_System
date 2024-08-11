@@ -5,9 +5,12 @@
 #include <stdint.h>
 
 
-void print(uint8_t* Copy_pu8String);
+void Print(uint8_t* Copy_pu8String);
 
 void Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size);
+
+void SendChar(uint8_t Copy_u8DataChar);
+
 
 
 #endif
