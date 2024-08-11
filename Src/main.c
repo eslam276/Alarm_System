@@ -18,56 +18,24 @@
 
 #include <stdint.h>
 #include "APP.h"
+#include "Service.h"
 
 
 int main(void)
 {
 	APP_voidInit();
+	APP_voidLogin();
 
 
+	Print("\r\n After the login func ...............................");
 
-	 uint8_t RX_Data = '1' ;
-
-	 	uint8_t password[5] = "1234";
-
-
-
-
-
-	 	while(1)
-	 	{
-
-	 		Print("\r\n please enter the   number : ");
-	 		Input(&RX_Data ,1);
-	 		Print("\r\n   the   number is  : ");
-	 		SendChar(RX_Data);
-
-	 		Print("\r\n please enter the   password : ");
-	 		Input(password , 4);
-	 		Print("\r\n  the   password is : ");
-	 		Print( password);
+	while (1)
+	{
+		/* code */
+	}
+	
 
 
-
-
-	 		if(RX_Data == '1')
-	 		{
-	 			GPIO_u8SetPinValue(PORTA, PIN5, HIGH);
-
-	 		}
-
-	 		else if (RX_Data == '2')
-	 		{
-	 			GPIO_u8SetPinValue(PORTA, PIN5, LOW);
-
-
-
-	 		}
-
-	 	//	SYSTIC_delay_ms(1000);
-
-
-	 	}
 
 	
 

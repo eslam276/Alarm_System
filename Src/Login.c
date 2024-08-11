@@ -1,18 +1,19 @@
 #include "Login.h"
 #include <stdint.h>
 #include <stdio.h>
+#include "Service.h"
 
 
 
-#define ID_LENGTH         4
-#define PASSWORD_LENGTH   4
+#define ID_LENGTH         5
+#define PASSWORD_LENGTH   5
 #define TRIALS_NUM        3
 
 
 
 
-uint8_t LOGIN_u8CheckId[ID_LENGTH] = {1,2,3,4} ;
-uint8_t LOGIN_u8CheckPassword[PASSWORD_LENGTH] = {4,3,2,1} ;
+uint8_t LOGIN_u8CheckId[ID_LENGTH] = "1234" ;
+uint8_t LOGIN_u8CheckPassword[PASSWORD_LENGTH] = "4321" ;
 
 
 
@@ -25,8 +26,8 @@ LOGIN_t LOGIN_IsValid(void)
     LOGIN_t LOCAL_Check = INVALID ;
 
 
-    uint8_t LOCAL_u8Id[ID_LENGTH] = {1,2,3,4} ;
-    uint8_t LOCAL_u8Password[PASSWORD_LENGTH] = {4,3,2,1} ;
+    uint8_t LOCAL_u8Id[ID_LENGTH] = "1234" ;
+    uint8_t LOCAL_u8Password[PASSWORD_LENGTH] = "4321" ;
    
 
 
@@ -39,7 +40,7 @@ LOGIN_t LOGIN_IsValid(void)
 
 
 
-    printf("\nWelcome .....");
+    Print("\r\n Welcome to the alarm system .....");
     
 
     for(LoginIterator=0 ; LoginIterator < TRIALS_NUM ; LoginIterator++)
@@ -52,12 +53,11 @@ LOGIN_t LOGIN_IsValid(void)
 
 
 
-        printf("\nEnter ID : ");
+        Print("\r\n Enter ID : ");
 
-        for ( i = 0; i < ID_LENGTH ; i++)
-        {
-            scanf("%d",&LOCAL_u8Id[i]);
-        }
+        Input(LOCAL_u8Id ,4);
+
+        
 
         
 
@@ -75,12 +75,11 @@ LOGIN_t LOGIN_IsValid(void)
 
 
 
-        printf("\nEnter Password : ");
+        Print("\r\nEnter Password : ");
 
-        for ( i = 0; i < PASSWORD_LENGTH ; i++)
-        {
-            scanf("%d",&LOCAL_u8Password[i]);
-        }
+        Input(LOCAL_u8Password ,4);
+
+       
 
         for ( i = 0; i < PASSWORD_LENGTH ; i++)
         {
@@ -99,7 +98,7 @@ LOGIN_t LOGIN_IsValid(void)
 
 
           LOCAL_Check = VALID ;
-          printf("\nWelcome Eslam");
+          Print("\r\n Welcome Eslam ...");
          
              
             break;
@@ -112,7 +111,7 @@ LOGIN_t LOGIN_IsValid(void)
 
            
 
-            printf("\nInvalid Id ");
+            Print("\r\n Invalid Id ");
 
 
 
@@ -125,7 +124,7 @@ LOGIN_t LOGIN_IsValid(void)
 
            
 
-            printf("\nInvalid Password");
+            Print("\r\n Invalid Password");
 
 
 
@@ -136,10 +135,10 @@ LOGIN_t LOGIN_IsValid(void)
 
             
 
-           printf("\nInvalid Id");
+           Print("\r\n Invalid Id");
 
          
-            printf("\nInvalid Password");
+            Print("\r\n Invalid Password");
 
 
 
@@ -153,7 +152,7 @@ LOGIN_t LOGIN_IsValid(void)
         			
 
                   
-            printf("\nTry Again..");
+            Print("\r\n Try Again....");
                    
 
         }
@@ -175,7 +174,7 @@ LOGIN_t LOGIN_IsValid(void)
     else
     {
     	
-        printf("\nInvalid Login ");
+        Print("\r\n Invalid Login ");
 
 
 
