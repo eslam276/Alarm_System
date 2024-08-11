@@ -1,3 +1,5 @@
 ../Src/USART_program.c:15:10:USART_u8Init	64	static
 ../Src/USART_program.c:105:10:USART_u8ReceiveCharSynch	24	static
 ../Src/USART_program.c:125:7:USART_voidTransmitCharSynch	16	static
+../Src/USART_program.c:137:10:USART_voidTransmitStringSynch	24	static
+../Src/USART_program.c:149:7:USART_u8ReceiveBufferSynch	24	static

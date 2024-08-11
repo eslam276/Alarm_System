@@ -130,3 +130,43 @@ void  USART_voidTransmitCharSynch     ( USART_NUM_t Copy_USARTindex , uint8_t  C
 		CLR_BIT( USART_Index[Copy_USARTindex] -> SR , USART_SR_TC );
 	
 }
+
+
+
+
+void     USART_voidTransmitStringSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Data  )
+{
+	uint8_t LOCAL_u8LoopIterator = 0 ;
+	while(Copy_pu8Data[LOCAL_u8LoopIterator] != 0 )
+	{
+		USART_voidTransmitCharSynch(Copy_USARTindex , Copy_pu8Data[LOCAL_u8LoopIterator] );
+		LOCAL_u8LoopIterator++ ;
+
+	}
+}
+
+
+void  USART_u8ReceiveBufferSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Data , uint8_t Copy_u8Size  )
+{
+	uint8_t LOCAL_u8LoopIterator ;
+
+	for(LOCAL_u8LoopIterator = 0 ; LOCAL_u8LoopIterator < Copy_u8Size  ; LOCAL_u8LoopIterator++)
+	{
+		USART_u8ReceiveCharSynch(Copy_USARTindex , &Copy_pu8Data[LOCAL_u8LoopIterator]);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

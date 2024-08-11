@@ -96,10 +96,21 @@ int main(void)
 
 
 
+
 	while(1)
 	{
+
+		USART_voidTransmitStringSynch(USART_2 , "\n please enter the   number : ");
 		USART_u8ReceiveCharSynch(USART_2, &RX_Data);
+		USART_voidTransmitStringSynch(USART_2 , "\n   the   number is  : ");
 		USART_voidTransmitCharSynch(USART_2 , RX_Data);
+
+		USART_voidTransmitStringSynch(USART_2 , "\n please enter the   password : ");
+		USART_u8ReceiveBufferSynch(USART_2 , password , 4);
+		USART_voidTransmitStringSynch(USART_2 , "\n  the   password is : ");
+		USART_voidTransmitStringSynch(USART_2 , password);
+
+
 
 
 		if(RX_Data == '1')
