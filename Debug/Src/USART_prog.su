@@ -4,7 +4,7 @@
 ../Src/USART_prog.c:213:6:USART_TransmitString	24	static
 ../Src/USART_prog.c:224:6:USART_TransmitBuffer	32	static
 ../Src/USART_prog.c:245:14:USART_ReceiveData	24	static
-../Src/USART_prog.c:264:6:USART_ReceiveBuffer	24	static
+../Src/USART_prog.c:264:6:USART_ReceiveBuffer	32	static
 ../Src/USART_prog.c:283:14:USART_Tx_DMA	24	static
 ../Src/USART_prog.c:308:14:USART_Rx_DMA	24	static
 ../Src/USART_prog.c:336:14:USART_CallBack	24	static

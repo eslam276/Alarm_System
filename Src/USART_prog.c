@@ -263,10 +263,10 @@ ErrorState_t USART_ReceiveData(const USART_ConfigReg_t* Copy_ConfigReg, uint8_t*
 
 void USART_ReceiveBuffer(const USART_ConfigReg_t* Copy_ConfigReg, uint8_t* Copy_ReceivingData ,uint8_t Copy_u8Size)
 {
-	while(Copy_u8Size > 0)
+	uint8_t LOCAL_u8Iterator ;
+	for(LOCAL_u8Iterator = 0 ; LOCAL_u8Iterator < Copy_u8Size ; LOCAL_u8Iterator++)
 	{
-		USART_ReceiveData(Copy_ConfigReg, Copy_ReceivingData);
-		Copy_u8Size--;
+		USART_ReceiveData(Copy_ConfigReg , &Copy_ReceivingData[LOCAL_u8Iterator] );
 	}
 }
 

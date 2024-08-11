@@ -86,6 +86,8 @@ int main(void)
 
 	uint8_t RX_Data = '1' ;
 
+	uint8_t password[5] = "1234";
+
 
 
 
@@ -93,6 +95,14 @@ int main(void)
 	{
 		USART_ReceiveData(&UART2, &RX_Data);
 		USART_TransmitData(&UART2, RX_Data);
+
+		USART_TransmitString(&UART2 , "\n the current password : ");
+		USART_TransmitString(&UART2 , password);
+
+		USART_TransmitString(&UART2 , "\n Enter new password :  ");
+		USART_ReceiveBuffer(&UART2,password ,4 );
+
+		USART_TransmitString(&UART2 , password);
 
 		if(RX_Data == '1')
 		{
