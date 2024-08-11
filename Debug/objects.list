@@ -1,7 +1,7 @@
 "./Src/GPIO_program.o"
 "./Src/RCC_prog.o"
 "./Src/SYSTIC_program.o"
-"./Src/USART_prog.o"
+"./Src/USART_program.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

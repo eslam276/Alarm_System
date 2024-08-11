@@ -55,12 +55,31 @@ void setup(void)
 
 
 
+		USART_Cnfg_t UART2 =
+		{
+			.USART_Num = USART_2 ,
+			.Parity = PARITY_DISABLED ,
+			.Word = EIGHT ,
+			.OverSampling = OVER8 ,
+			.Mode = RX_TX ,
+			.RX_INT = RXINT_DISABLE
 
-	 GPIO_u8PinInit(&USART_TX_PIN);
-	 GPIO_u8PinInit(&USART_RX_PIN);
+
+		};
+
+
+
+
 
 
 	 GPIO_u8PinInit(&PINA5);
+
+	 GPIO_u8PinInit(&USART_TX_PIN);
+	 GPIO_u8PinInit(&USART_RX_PIN);
+	 USART_u8Init(&UART2);
+
+
+
 
 }
 
@@ -69,21 +88,6 @@ int main(void)
 	setup();
 
 
-
-	USART_ConfigReg_t UART2 =
-	{
-			.USART_MODE = USART_RXTX ,
-			.USART_BAUDRATE = 9600 ,
-			.USART_HWFLOWCONTROL = USART_HW_FLOW_CONTROL_OFF ,
-			.USART_STOPBITS = USART_ONE_STOP_BITS,
-			.USART_WORDLENGTH = USART_EIGHT_BIT ,
-			.USART_PARITYBIT = USART_NO_PARITY ,
-			.USART_USARTNUMBER = USART_USART2 ,
-			.USART_OVERSAMPLINGMODE = USART_OVER8_ ,
-			.USART_SYNCHMODE = USART_ASYNCH
-	};
-
-	USART_Init(&UART2);
 
 	uint8_t RX_Data = '1' ;
 
@@ -94,28 +98,25 @@ int main(void)
 
 	while(1)
 	{
-		USART_ReceiveData(&UART2, &RX_Data);
-		USART_TransmitData(&UART2, RX_Data);
+		USART_u8ReceiveCharSynch(USART_2, &RX_Data);
+		USART_voidTransmitCharSynch(USART_2 , RX_Data);
 
-		USART_TransmitString(&UART2 , "\n the current password : ");
-		USART_TransmitString(&UART2 , password);
-
-		USART_TransmitString(&UART2 , "\n Enter new password :  ");
-		USART_ReceiveBuffer(&UART2,password ,4 );
-
-		USART_TransmitString(&UART2 , password);
 
 		if(RX_Data == '1')
 		{
 			GPIO_u8SetPinValue(PORTA, PIN5, HIGH);
+
 		}
 
 		else if (RX_Data == '2')
 		{
 			GPIO_u8SetPinValue(PORTA, PIN5, LOW);
 
+
+
 		}
 
+	//	SYSTIC_delay_ms(1000);
 
 
 	}

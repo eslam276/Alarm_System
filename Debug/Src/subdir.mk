@@ -8,7 +8,7 @@ C_SRCS += \
 ../Src/GPIO_program.c \
 ../Src/RCC_prog.c \
 ../Src/SYSTIC_program.c \
-../Src/USART_prog.c \
+../Src/USART_program.c \
 ../Src/main.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c 
@@ -17,7 +17,7 @@ OBJS += \
 ./Src/GPIO_program.o \
 ./Src/RCC_prog.o \
 ./Src/SYSTIC_program.o \
-./Src/USART_prog.o \
+./Src/USART_program.o \
 ./Src/main.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o 
@@ -26,7 +26,7 @@ C_DEPS += \
 ./Src/GPIO_program.d \
 ./Src/RCC_prog.d \
 ./Src/SYSTIC_program.d \
-./Src/USART_prog.d \
+./Src/USART_program.d \
 ./Src/main.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d 
@@ -39,7 +39,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/GPIO_program.cyclo ./Src/GPIO_program.d ./Src/GPIO_program.o ./Src/GPIO_program.su ./Src/RCC_prog.cyclo ./Src/RCC_prog.d ./Src/RCC_prog.o ./Src/RCC_prog.su ./Src/SYSTIC_program.cyclo ./Src/SYSTIC_program.d ./Src/SYSTIC_program.o ./Src/SYSTIC_program.su ./Src/USART_prog.cyclo ./Src/USART_prog.d ./Src/USART_prog.o ./Src/USART_prog.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+	-$(RM) ./Src/GPIO_program.cyclo ./Src/GPIO_program.d ./Src/GPIO_program.o ./Src/GPIO_program.su ./Src/RCC_prog.cyclo ./Src/RCC_prog.d ./Src/RCC_prog.o ./Src/RCC_prog.su ./Src/SYSTIC_program.cyclo ./Src/SYSTIC_program.d ./Src/SYSTIC_program.o ./Src/SYSTIC_program.su ./Src/USART_program.cyclo ./Src/USART_program.d ./Src/USART_program.o ./Src/USART_program.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
 
 .PHONY: clean-Src
 
