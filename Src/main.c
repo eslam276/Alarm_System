@@ -21,11 +21,15 @@
 #include "RCC_Interface.h"
 #include "GPIO_interface.h"
 #include "SYSTICK_interface.h"
+#include "USART_interface.h"
 
 void setup(void)
 {
 
 	RCC_AHB1EnableClock(GPIOAEN);
+	RCC_APB1EnableClock(USART2EN);
+
+
 
 	PinConfig_t PINA5 = {
 
@@ -36,6 +40,25 @@ void setup(void)
 
 	};
 
+
+	PinConfig_t USART_TX_PIN = {
+			.AltFunc=AF7, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN2, .Port=PORTA, .PullType=NOPULL, .Speed=LOW_SPEED
+	};
+
+	PinConfig_t USART_RX_PIN = {
+			.AltFunc=AF7, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN3, .Port=PORTA, .PullType=NOPULL, .Speed=LOW_SPEED
+	};
+
+
+
+
+
+	GPIO_u8PinInit(&USART_TX_PIN);
+	GPIO_u8PinInit(&USART_RX_PIN);
+
+
 	GPIO_u8PinInit(&PINA5);
 
 }
@@ -44,12 +67,46 @@ int main(void)
 {
 	setup();
 
+
+
+	USART_ConfigReg_t UART2 =
+	{
+			.USART_MODE = USART_RXTX ,
+			.USART_BAUDRATE = 9600 ,
+			.USART_HWFLOWCONTROL = USART_HW_FLOW_CONTROL_OFF ,
+			.USART_STOPBITS = USART_ONE_STOP_BITS,
+			.USART_WORDLENGTH = USART_EIGHT_BIT ,
+			.USART_PARITYBIT = USART_NO_PARITY ,
+			.USART_USARTNUMBER = USART_USART2 ,
+			.USART_OVERSAMPLINGMODE = USART_OVER8_ ,
+			.USART_SYNCHMODE = USART_ASYNCH
+	};
+
+	USART_Init(&UART2);
+
+	uint8_t RX_Data = '1' ;
+
+
+
+
 	while(1)
 	{
-		GPIO_u8SetPinValue(PORTA, PIN5, PIN_HIGH);
-		SYSTICK_DelayMs(1000);
-		GPIO_u8SetPinValue(PORTA, PIN5, PIN_LOW);
-		SYSTICK_DelayMs(1000);
+		USART_ReceiveData(&UART2, &RX_Data);
+		USART_TransmitData(&UART2, RX_Data);
+
+		if(RX_Data == '1')
+		{
+			GPIO_u8SetPinValue(PORTA, PIN5, PIN_HIGH);
+		}
+
+		else if (RX_Data == '2')
+		{
+			GPIO_u8SetPinValue(PORTA, PIN5, PIN_LOW);
+
+		}
+
+
 
 	}
+
 }
