@@ -75,7 +75,7 @@ LOGIN_t LOGIN_IsValid(void)
 
 
 
-        Print("\r\nEnter Password : ");
+        Print("\r\n Enter Password : ");
 
         Input(LOCAL_u8Password ,4);
 

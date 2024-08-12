@@ -200,7 +200,7 @@ void APP_voidMenu(void)
 	Local_u8AlarmNumber  = Local_u8AlarmNumber - 48 ;
 
 	Print("\r\n\r\n please Enter the alarm Name : ");
-	InputString( &Global_u8Alarms[Local_u8AlarmNumber] , ALARM_NAME_LEGTH);
+	InputString( &Global_u8Alarms[Local_u8AlarmNumber - 1] , ALARM_NAME_LEGTH);
 
 	
 
@@ -217,6 +217,7 @@ void APP_voidMenu(void)
 	{
 		Print("\r\n");
 		SendChar(LOCAL_u8LoopIterator + 1 + 48 );
+		Print(") ");
 		Print(&Global_u8Alarms[LOCAL_u8LoopIterator]);
 	}
 	

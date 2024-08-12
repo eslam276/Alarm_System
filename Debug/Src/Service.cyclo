@@ -1,4 +1,4 @@
 ../Src/Service.c:9:6:Print	1
 ../Src/Service.c:14:6:Input	1
 ../Src/Service.c:20:6:SendChar	1
-../Src/Service.c:27:6:InputString	2
+../Src/Service.c:27:6:InputString	3
