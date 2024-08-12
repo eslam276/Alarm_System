@@ -1,2 +1,6 @@
-../Src/APP.c:8:6:APP_voidInit	1
-../Src/APP.c:71:6:APP_voidLogin	3
+../Src/APP.c:14:6:APP_voidInit	1
+../Src/APP.c:77:6:APP_voidLogin	3
+../Src/APP.c:103:6:APP_voidMenu	7
+../Src/APP.c:158:13:Display_Time_And_Date	1
+../Src/APP.c:166:13:Set_Time_And_Date	1
+../Src/APP.c:174:13:Set_Alarm	1

@@ -123,13 +123,13 @@ void APP_voidMenu(void)
 	switch (Local_u8Number)
 	{
 		case '1' :
-			/* code */
+			Display_Time_And_Date();
 			break;
 		case '2' :
-			/* code */
+			Set_Time_And_Date();
 			break;
 		case '3' :
-			/* code */
+			Set_Alarm();
 			break;
 
 		case '4' :
@@ -166,7 +166,7 @@ static void Display_Time_And_Date(void)
 static void Set_Time_And_Date(void)
 {
 
-	Print("\r\n Set function...");
+	Print("\r\n Set time and date  function...");
 
 }
 

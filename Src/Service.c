@@ -21,3 +21,35 @@ void SendChar(uint8_t Copy_u8DataChar)
 {
     USART_voidTransmitCharSynch(USART_2, Copy_u8DataChar);
 }
+
+
+
+void InputString(uint8_t* Copy_pu8String)
+{
+	uint8_t LOCAL_u8LoopIterator = 0 ;
+
+	USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
+
+	while(Copy_pu8String[LOCAL_u8LoopIterator] != '\r' )
+	{
+		LOCAL_u8LoopIterator++;
+
+		USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
+
+	}
+	Copy_pu8String[LOCAL_u8LoopIterator] = 0 ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
