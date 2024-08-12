@@ -24,19 +24,29 @@ void SendChar(uint8_t Copy_u8DataChar)
 
 
 
-void InputString(uint8_t* Copy_pu8String)
+void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 {
 	uint8_t LOCAL_u8LoopIterator = 0 ;
 
 	USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
 
+
 	while(Copy_pu8String[LOCAL_u8LoopIterator] != '\r' )
 	{
+
+		
 		LOCAL_u8LoopIterator++;
+
+		if (LOCAL_u8LoopIterator == Copy_u8MaxSize - 1 )
+		{
+			break; 
+		}
 
 		USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
 
+		
 	}
+	
 	Copy_pu8String[LOCAL_u8LoopIterator] = 0 ;
 }
 

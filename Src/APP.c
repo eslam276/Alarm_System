@@ -3,9 +3,13 @@
 #include "Service.h"
 
 
+static uint8_t Global_u8Alarms[NUM_OF_ALARMS][ALARM_NAME_LEGTH] = { "Alarm 1" , "Alarm 2" , "Alarm 3" ,"Alarm 4" , "Alarm 5"};
+
+
 static void Display_Time_And_Date(void);
 static void Set_Time_And_Date(void);
 static void Set_Alarm(void);
+static void Display_Alarms(void);
 
 
 
@@ -110,11 +114,12 @@ void APP_voidMenu(void)
 	Print("\r\n\r\n 1) Display time and date ");
 	Print("\r\n 2) Set time and date ");
 	Print("\r\n 3) Set Alarm ");
-	Print("\r\n 4) Exit \r\n");
+	Print("\r\n 4) Display all Alarms ");
+	Print("\r\n 5) Exit \r\n");
 
 	Input(&Local_u8Number , 1);
 
-	while (Local_u8Number < '1' || Local_u8Number > '4')
+	while (Local_u8Number < '1' || Local_u8Number > '5')
 	{
 		Print("\r\n Please enter a valid number ... ");
 		Input(&Local_u8Number , 1);
@@ -125,14 +130,20 @@ void APP_voidMenu(void)
 		case '1' :
 			Display_Time_And_Date();
 			break;
+
 		case '2' :
 			Set_Time_And_Date();
 			break;
+
 		case '3' :
 			Set_Alarm();
 			break;
 
 		case '4' :
+			Display_Alarms();
+			break;
+
+		case '5' :
 			while (1)
 			{
 				/* Do nothing  */
@@ -155,7 +166,7 @@ void APP_voidMenu(void)
 
 
 
-static void Display_Time_And_Date(void)
+ void Display_Time_And_Date(void)
 {
 
 	Print("\r\n Display function...");
@@ -163,7 +174,7 @@ static void Display_Time_And_Date(void)
 }
 
 
-static void Set_Time_And_Date(void)
+ void Set_Time_And_Date(void)
 {
 
 	Print("\r\n Set time and date  function...");
@@ -171,12 +182,46 @@ static void Set_Time_And_Date(void)
 }
 
 
-static void Set_Alarm(void)
+ void Set_Alarm(void)
 {
+	uint8_t Local_u8AlarmNumber ; 
 
-	Print("\r\n Set Alarm  function...");
+
+	Print("\r\n\r\n please Enter the alarm number from 1 to 5 : ");
+	Input(&Local_u8AlarmNumber,1);
+
+	while (Local_u8AlarmNumber < '1' || Local_u8AlarmNumber > '5')
+	{
+		Print("\r\n Please enter a valid number ... ");
+		Input(&Local_u8AlarmNumber , 1);
+	}
+
+
+	Local_u8AlarmNumber  = Local_u8AlarmNumber - 48 ;
+
+	Print("\r\n\r\n please Enter the alarm Name : ");
+	InputString( &Global_u8Alarms[Local_u8AlarmNumber] , ALARM_NAME_LEGTH);
+
+	
 
 }
+
+
+ void Display_Alarms(void)
+ {
+	uint8_t LOCAL_u8LoopIterator ;
+
+	Print("\r\n");
+
+	for(LOCAL_u8LoopIterator = 0 ; LOCAL_u8LoopIterator < NUM_OF_ALARMS  ; LOCAL_u8LoopIterator++)
+	{
+		Print("\r\n");
+		SendChar(LOCAL_u8LoopIterator + 1 + 48 );
+		Print(&Global_u8Alarms[LOCAL_u8LoopIterator]);
+	}
+	
+ }
+
 
 
 
