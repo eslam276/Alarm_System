@@ -12,5 +12,7 @@
 void APP_voidInit(void);
 void APP_voidLogin(void);
 
+void APP_voidMenu(void);
+
 
 #endif

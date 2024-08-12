@@ -3,6 +3,12 @@
 #include "Service.h"
 
 
+static void Display_Time_And_Date(void);
+static void Set_Time_And_Date(void);
+static void Set_Alarm(void);
+
+
+
 
 
 void APP_voidInit(void)
@@ -74,19 +80,102 @@ void APP_voidLogin(void)
 
 	if (Local_u8Check == VALID)
 	{
-		/* Do nothing  */
+		Print("\r\n\r\n Welcome to the alarm system.................");
+		/* turn on green LED on the kit */
 	}
 	else if (Local_u8Check == INVALID)
 	{
+
+		Print("\r\n The System is closed :(  ");
 		while (1)
 		{
 			/* code */
+			/* turn on red LED on the kit */
 		}
 		
 	}
 	
 	
 	
+}
+
+
+void APP_voidMenu(void)
+{
+	
+	uint8_t Local_u8Number ;
+
+	
+	Print("\r\n\r\n Menu : ");
+	Print("\r\n\r\n 1) Display time and date ");
+	Print("\r\n 2) Set time and date ");
+	Print("\r\n 3) Set Alarm ");
+	Print("\r\n 4) Exit \r\n");
+
+	Input(&Local_u8Number , 1);
+
+	while (Local_u8Number < '1' || Local_u8Number > '4')
+	{
+		Print("\r\n Please enter a valid number ... ");
+		Input(&Local_u8Number , 1);
+	}
+
+	switch (Local_u8Number)
+	{
+		case '1' :
+			/* code */
+			break;
+		case '2' :
+			/* code */
+			break;
+		case '3' :
+			/* code */
+			break;
+
+		case '4' :
+			while (1)
+			{
+				/* Do nothing  */
+			}
+			
+			break;
+		
+		default:
+			break;
+	}
+	
+
+
+}
+
+
+
+
+
+
+
+
+static void Display_Time_And_Date(void)
+{
+
+	Print("\r\n Display function...");
+
+}
+
+
+static void Set_Time_And_Date(void)
+{
+
+	Print("\r\n Set function...");
+
+}
+
+
+static void Set_Alarm(void)
+{
+
+	Print("\r\n Set Alarm  function...");
+
 }
 
 

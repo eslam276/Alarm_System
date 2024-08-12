@@ -98,7 +98,8 @@ LOGIN_t LOGIN_IsValid(void)
 
 
           LOCAL_Check = VALID ;
-          Print("\r\n Welcome Eslam ...");
+
+         /* Print("\r\n Welcome Eslam ...");  */ 
          
              
             break;

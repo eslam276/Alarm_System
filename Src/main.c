@@ -24,14 +24,13 @@
 int main(void)
 {
 	APP_voidInit();
+
 	APP_voidLogin();
 
-
-	Print("\r\n After the login func ...............................");
-
+	
 	while (1)
 	{
-		/* code */
+		APP_voidMenu();
 	}
 	
 
