@@ -84,13 +84,13 @@ void APP_voidLogin(void)
 
 	if (Local_u8Check == VALID)
 	{
-		Print("\r\n\r\n Welcome to the alarm system.................");
+		Print("\r\n\r\n Welcome Eslam .................");
 		/* turn on green LED on the kit */
 	}
 	else if (Local_u8Check == INVALID)
 	{
 
-		Print("\r\n The System is closed :(  ");
+		Print("\r\n\r\n The System is closed :(  ");
 		while (1)
 		{
 			/* code */

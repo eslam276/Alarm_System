@@ -40,7 +40,7 @@ LOGIN_t LOGIN_IsValid(void)
 
 
 
-    Print("\r\n Welcome to the alarm system .....");
+    Print("\r\n Welcome to the alarm system .....\r\n");
     
 
     for(LoginIterator=0 ; LoginIterator < TRIALS_NUM ; LoginIterator++)
@@ -78,6 +78,7 @@ LOGIN_t LOGIN_IsValid(void)
         Print("\r\n Enter Password : ");
 
         Input(LOCAL_u8Password ,4);
+        Print("\r\n");
 
        
 
@@ -153,7 +154,7 @@ LOGIN_t LOGIN_IsValid(void)
         			
 
                   
-            Print("\r\n Try Again....");
+            Print("\r\n\r\n Try Again....\r\n");
                    
 
         }
@@ -175,7 +176,7 @@ LOGIN_t LOGIN_IsValid(void)
     else
     {
     	
-        Print("\r\n Invalid Login ");
+        Print("\r\n\r\n Invalid Login ");
 
 
 
