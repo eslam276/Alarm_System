@@ -12,6 +12,10 @@ uint8_t SYSTIC_delay_ms(uint32_t time);
 uint8_t SYSTIC_delay_us(uint32_t time);
 
 
+void SYSTIC_delay_ms_IT(uint32_t time);
+
+
+
 
 
 

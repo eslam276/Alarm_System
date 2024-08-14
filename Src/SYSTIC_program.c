@@ -116,3 +116,41 @@ uint8_t SYSTIC_delay_us(uint32_t time)
     return LOCAL_u8ErrorState ;
 
 }
+
+
+void SYSTIC_delay_ms_IT(uint32_t time)
+{
+
+    
+
+    uint32_t LOCAL_u32Value = (time *1000 *  AHB_CLOCK / 8 );
+
+    /* check if the value > the Register  available bits  */
+    if(LOCAL_u32Value > 0xffffff)
+    {
+    	LOCAL_u32Value = 0xffffff ;
+    }
+
+    /* Set the SYSTIC CLOCK to the Processor clock source / 8  */
+    CLR_BIT(SYSTIC->STK_CTRL,STK_CTRL_CLKSOURCE);
+
+     /* set the value in the SysTick reload value register */
+    SYSTIC->STK_LOAD |= LOCAL_u32Value ;
+
+
+    /* Clear the VAL Register to load the start of the down counter from the LOAD register */
+       SYSTIC->STK_VAL &= 0b11111111<<24;
+
+    /* Enable Exception For Busy Waiting */
+	( SYSTIC->STK_CTRL ) |= ( 1 << 1 )  ;
+
+
+
+     /* Enable SYSTIC */
+     SET_BIT(SYSTIC->STK_CTRL,STK_CTRL_ENABLE);
+
+      
+}
+
+
+void SysTick_Handler(void);
