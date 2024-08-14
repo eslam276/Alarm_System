@@ -3345,10 +3345,10 @@ void SRV_SetTimeNDate(void)
 
 	uint8_t Local_u8TimeNDate[17];
 
-	Print ( (uint8_t*)"\r\nSet Time and Date for the first time: ");
+	Print ( (uint8_t*)"\r\n Set Time and Date for the first time: ");
  80016ce:	482f      	ldr	r0, [pc, #188]	; (800178c <SRV_SetTimeNDate+0xc4>)
  80016d0:	f7ff ff90 	bl	80015f4 <Print>
-	Print ( (uint8_t*)"\n\033[1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)\r");
+	Print ( (uint8_t*)"\r\n [1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)");
  80016d4:	482e      	ldr	r0, [pc, #184]	; (8001790 <SRV_SetTimeNDate+0xc8>)
  80016d6:	f7ff ff8d 	bl	80015f4 <Print>
 	//Hours
@@ -3503,7 +3503,7 @@ void SRV_ShowTimeNDate(void)
  80017de:	2b07      	cmp	r3, #7
  80017e0:	d9ee      	bls.n	80017c0 <SRV_ShowTimeNDate+0x24>
 	}
-	Print (  (uint8_t*)"\r\nTime and Date:");
+	Print (  (uint8_t*)"\r\n Time and Date:");
  80017e2:	4809      	ldr	r0, [pc, #36]	; (8001808 <SRV_ShowTimeNDate+0x6c>)
  80017e4:	f7ff ff06 	bl	80015f4 <Print>
 	Send( Local_u8StringBridge ,14);
