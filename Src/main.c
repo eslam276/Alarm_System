@@ -28,6 +28,10 @@ int main(void)
 
 	APP_voidInit();
 
+	uint8_t buffer[] = "\r\n My name is Eslam Elsaid Nasr Eldin Ali Ebrahim ";
+
+	Send(buffer, 12);
+
 	APP_voidLogin();
 
 	

@@ -2,4 +2,5 @@
 ../Src/USART_program.c:105:10:USART_u8ReceiveCharSynch	3
 ../Src/USART_program.c:125:7:USART_voidTransmitCharSynch	2
 ../Src/USART_program.c:137:10:USART_voidTransmitStringSynch	2
-../Src/USART_program.c:149:7:USART_u8ReceiveBufferSynch	2
+../Src/USART_program.c:150:6:USART_voidTransmitBufferSynch	2
+../Src/USART_program.c:161:7:USART_u8ReceiveBufferSynch	2

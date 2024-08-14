@@ -2,3 +2,4 @@
 ../Src/Service.c:14:6:Input	1
 ../Src/Service.c:20:6:SendChar	1
 ../Src/Service.c:27:6:InputString	3
+../Src/Service.c:60:6:Send	1

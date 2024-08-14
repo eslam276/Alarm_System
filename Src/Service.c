@@ -59,7 +59,7 @@ void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 
 void Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
 {
-	void USART_voidTransmitBufferSynch( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Buffer  , uint8_t Copy_u8size );
+	 USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
 
 }
 

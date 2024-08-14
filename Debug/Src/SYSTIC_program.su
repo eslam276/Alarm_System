@@ -1,2 +1,3 @@
 ../Src/SYSTIC_program.c:18:9:SYSTIC_delay_ms	24	static
 ../Src/SYSTIC_program.c:70:9:SYSTIC_delay_us	24	static
+../Src/SYSTIC_program.c:121:6:SYSTIC_delay_ms_IT	24	static

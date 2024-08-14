@@ -2,3 +2,4 @@
 ../Src/Service.c:14:6:Input	16	static
 ../Src/Service.c:20:6:SendChar	16	static
 ../Src/Service.c:27:6:InputString	24	static
+../Src/Service.c:60:6:Send	16	static
