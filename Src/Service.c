@@ -116,7 +116,7 @@ void SRV_ShowTimeNDate(void)
 		//local_u8TimeNDate[Local_u8Iterator] = BCDToDecimal(local_u8TimeNDate[Local_u8Iterator]);
 		HexToString(local_u8TimeNDate[Local_u8Iterator],&Local_u8StringBridge[Local_u8Iterator*2] );
 	}
-	Print (  (uint8_t*)"\nTime and Date:");
+	Print (  (uint8_t*)"\r\nTime and Date:");
 	Send( Local_u8StringBridge ,14);
 }
 
@@ -124,7 +124,7 @@ void SRV_SetAlarm(uint8_t copy_u8AlarmNumber)
 {
 	uint8_t Local_u8Station[17];
 
-	Print ( (uint8_t*)"\nSet Time and Date: ");
+	Print ( (uint8_t*)"\r\nSet Time and Date: ");
 	Print ( (uint8_t*)"\n\033[1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)\r");
 
 	ReadCurrentDnTFromUser(Local_u8Station);
