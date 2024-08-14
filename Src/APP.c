@@ -175,7 +175,21 @@ void APP_voidMenu(void)
 			break;
 
 		case '3' :
-			Set_Alarm();
+			//Set_Alarm();
+			uint8_t Local_u8AlarmNumber=0;
+			//Read Time and Date from user
+			Print( (uint8_t*)"\nWhich alarm you want to set?");
+			Print( (uint8_t*)"\nAlarm 1");
+			Print( (uint8_t*)"\nAlarm 2");
+			Print( (uint8_t*)"\nAlarm 3");
+			Print( (uint8_t*)"\nAlarm 4");
+			Print( (uint8_t*)"\nAlarm 5");
+
+			Print( (uint8_t*)"\nAlarm [");
+			Input( &Local_u8AlarmNumber , 1);
+			Print( (uint8_t*)"]");
+
+			SRV_SetAlarm((Local_u8AlarmNumber-49));
 			break;
 
 		case '4' :
