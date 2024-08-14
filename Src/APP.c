@@ -26,6 +26,8 @@ void APP_voidInit(void)
 {
 
 	 RCC_AHB1EnableClk(AHB1_GPIOA);
+	 RCC_AHB1EnableClk(AHB1_GPIOB);
+
 	 RCC_APB1Enable(APB1_USART2);
 	 RCC_APB1Enable(APB1_I2C1);
 
