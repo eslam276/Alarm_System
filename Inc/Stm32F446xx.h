@@ -15,6 +15,13 @@
 #define USART4_BASE_ADDRESS					0x40004C00UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 4*/
 #define USART3_BASE_ADDRESS					0x40004800UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 3*/
 #define USART2_BASE_ADDRESS					0x40004400UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 2*/
+
+#define RTC_BASE_ADDRESS					0x40002800UL	 /*REAL-TIME CLOCK AND BACKUP BASE ADDRESS*/
+
+#define I2C3_BASE_ADDRESS					0x40005C00UL	/*Inter-Integrated Circuit 3 BASE ADDRESS*/
+#define I2C2_BASE_ADDRESS					0x40005800UL	/*Inter-Integrated Circuit 2 BASE ADDRESS*/
+#define I2C1_BASE_ADDRESS					0x40005400UL	/*Inter-Integrated Circuit 1 BASE ADDRESS*/
+
 /***************APB2 Peripherals Base Addresses****************/
 #define EXTI_BASE_ADDRESS					0x40013C00UL	 /*EXTERNAL INTERRUPT BASE ADDRESS*/
 #define SYSCFG_BASE_ADDRESS					0x40013800UL	 /*SYSCFG BASE ADDRESS*/
@@ -269,6 +276,62 @@ typedef struct{
 /***************FLASH Register Definition ****************/
 
 #define _FLASH  ((FLASH_Reg_t*)FLASH_I_R_BASE_ADDRESS)
+
+/***************RTC Register Definition Structure****************/
+typedef struct{
+
+	volatile uint32_t RTC_TR;
+	volatile uint32_t RTC_DR;
+	volatile uint32_t RTC_CR;
+	volatile uint32_t RTC_ISR;
+
+	volatile uint32_t RTC_PRER;
+	volatile uint32_t RTC_WUTR;
+	volatile uint32_t RTC_CALIBR;
+	volatile uint32_t RTC_ALRMAR;
+
+	volatile uint32_t RTC_ALRMBR;
+	volatile uint32_t RTC_WPR;
+	volatile uint32_t RTC_SSR;
+	volatile uint32_t RTC_SHIFTR;
+
+	volatile uint32_t RTC_TSTR;
+			 uint32_t RTC_REVERSED0;
+	volatile uint32_t RTC_TSSSR;
+	volatile uint32_t RTC_CALR;
+
+	volatile uint32_t RTC_TAFCR;
+	volatile uint32_t RTC_ALRMASSR;
+	volatile uint32_t RTC_ALRMBSSR;
+	volatile uint32_t RTC_BKPnR[20];
+
+}RTC_Reg_t;
+
+/***************RTC Register Definition ****************/
+#define RTC 	((RTC_Reg_t*)RTC_BASE_ADDRESS)
+
+/***************I2C Register Definition Structure****************/
+typedef struct{
+
+	volatile uint32_t I2C_CR1;
+	volatile uint32_t I2C_CR2;
+	volatile uint32_t I2C_OAR1;
+	volatile uint32_t I2C_OAR2;
+
+	volatile uint32_t I2C_DR;
+	volatile uint32_t I2C_SR1;
+	volatile uint32_t I2C_SR2;
+	volatile uint32_t I2C_CCR;
+
+	volatile uint32_t I2C_TRISE;
+	volatile uint32_t I2C_FLTR;
+
+}I2C_Reg_t;
+
+/***************I2C Register Definition ****************/
+#define I2C1 	((I2C_Reg_t*)I2C1_BASE_ADDRESS)
+#define I2C2 	((I2C_Reg_t*)I2C2_BASE_ADDRESS)
+#define I2C3 	((I2C_Reg_t*)I2C3_BASE_ADDRESS)
 
 
 

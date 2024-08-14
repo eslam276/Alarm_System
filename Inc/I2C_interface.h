@@ -1,6 +1,7 @@
 #ifndef		I2C_INTERFACE_H_
 #define		I2C_INTERFACE_H_
 #include "I2C_prv.h"
+#include "ErrType.h"
 typedef enum{
 
 	CR1_PE,

@@ -1,0 +1,17 @@
+../Src/I2C_prog.c:12:14:I2C_Init	2
+../Src/I2C_prog.c:80:14:I2C_SendStartCondition	2
+../Src/I2C_prog.c:101:14:I2C_SendStopCondition	2
+../Src/I2C_prog.c:117:6:MasterSendSlaveAddress	1
+../Src/I2C_prog.c:130:6:MasterSendData	1
+../Src/I2C_prog.c:143:14:I2C_MasterTransmitData	3
+../Src/I2C_prog.c:192:14:I2C_MasterReceiveData	2
+../Src/I2C_prog.c:222:14:I2C_MasterRequestWrite	3
+../Src/I2C_prog.c:260:6:I2C_SendDataPacket	1
+../Src/I2C_prog.c:271:14:I2C_MasterRequestRead	2
+../Src/I2C_prog.c:309:14:I2C_EnableAck	2
+../Src/I2C_prog.c:326:14:I2C_DisableAck	2
+../Src/I2C_prog.c:343:10:ClearFlag	1
+../Src/I2C_prog.c:353:14:WaitForBusyFlag	3
+../Src/I2C_prog.c:369:14:WaitForR1Flag	3
+../Src/I2C_prog.c:385:14:WaitForR2Flag	3
+../Src/I2C_prog.c:400:14:ReadR1FlagReg	2

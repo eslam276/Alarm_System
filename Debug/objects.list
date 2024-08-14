@@ -1,5 +1,7 @@
 "./Src/APP.o"
+"./Src/DS1307_prog.o"
 "./Src/GPIO_program.o"
+"./Src/I2C_prog.o"
 "./Src/Login.o"
 "./Src/RCC_prog.o"
 "./Src/SYSTIC_program.o"
