@@ -146,6 +146,18 @@ void     USART_voidTransmitStringSynch     ( USART_NUM_t Copy_USARTindex , uint8
 }
 
 
+
+void USART_voidTransmitBufferSynch( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Buffer  , uint8_t Copy_u8Size )
+{
+	uint8_t LOCAL_u8LoopIterator = 0 ;
+	for (LOCAL_u8LoopIterator = 0; LOCAL_u8LoopIterator < Copy_u8Size ; LOCAL_u8LoopIterator++ )
+	{
+		USART_voidTransmitCharSynch(Copy_USARTindex , Copy_pu8Buffer[LOCAL_u8LoopIterator] );
+	}
+	
+}
+
+
 void  USART_u8ReceiveBufferSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Data , uint8_t Copy_u8Size  )
 {
 	uint8_t LOCAL_u8LoopIterator ;

@@ -95,6 +95,8 @@ uint8_t  USART_u8Init( USART_Cnfg_t * Copy_psCnfg );
 uint8_t  USART_u8ReceiveCharSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8DataChar  );
 void     USART_voidTransmitCharSynch     ( USART_NUM_t Copy_USARTindex , uint8_t  Copy_u8DataChar  ) ;
 
+void USART_voidTransmitBufferSynch( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Buffer  , uint8_t Copy_u8Size );
+
 void     USART_voidTransmitStringSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Data  ) ;
 void 	 USART_u8ReceiveBufferSynch     ( USART_NUM_t Copy_USARTindex , uint8_t * Copy_pu8Data , uint8_t Copy_u8Size  );
 
