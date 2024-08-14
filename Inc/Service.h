@@ -8,7 +8,6 @@
 
 
 
-void SRC_ServiceInit(void);
 void SRV_SetTimeNDate(void);
 void SRV_ShowTimeNDate(void);
 void SRV_SetAlarm(uint8_t copy_u8AlarmNumber);

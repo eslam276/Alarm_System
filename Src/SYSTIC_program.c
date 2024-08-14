@@ -153,4 +153,3 @@ void SYSTIC_delay_ms_IT(uint32_t time)
 }
 
 
-void SysTick_Handler(void);

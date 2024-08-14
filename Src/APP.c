@@ -164,11 +164,12 @@ void APP_voidMenu(void)
 	switch (Local_u8Number)
 	{
 		case '1' :
-			Display_Time_And_Date();
+			SRV_ShowTimeNDate();
 			break;
 
 		case '2' :
-			Set_Time_And_Date();
+			SRV_SetTimeNDate();
+			Print("\r\nTime and Date is set successfully. ;)");
 			break;
 
 		case '3' :
@@ -258,6 +259,14 @@ void APP_voidMenu(void)
 	}
 	
  }
+
+
+
+void APP_FirstSetUp(void)
+{
+	SRV_SetTimeNDate();
+
+}
 
 
 
