@@ -5,6 +5,15 @@
 #include <stdint.h>
 
 
+
+
+
+void SRC_ServiceInit(void);
+void SRV_SetTimeNDate(void);
+void SRV_ShowTimeNDate(void);
+void SRV_SetAlarm(uint8_t copy_u8AlarmNumber);
+
+
 void Print(uint8_t* Copy_pu8String);
 
 void Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size);

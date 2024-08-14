@@ -2,7 +2,14 @@
 #include <stdint.h>
 #include "Service.h"
 #include "USART_interface.h"
+#include "I2C_interface.h"
+#include "DS1307_interface.h"
 
+
+
+extern I2C_config_t 		I2C1_SysConfig;
+extern RTC_Config_t RTC_DS1307_Config;
+uint8_t Alarm[5][7]={0};
 
 
 
