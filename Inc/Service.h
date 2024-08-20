@@ -14,6 +14,7 @@ void SRV_SetAlarm(uint8_t copy_u8AlarmNumber);
 
 
 void Print(uint8_t* Copy_pu8String);
+void Print_Time_Date(uint8_t* Copy_pu8String);
 
 void Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size);
 void Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size );

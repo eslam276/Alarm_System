@@ -1,8 +1,8 @@
 ../Src/APP.c:25:6:APP_voidInit	1
 ../Src/APP.c:119:6:APP_voidLogin	3
 ../Src/APP.c:145:6:APP_voidMenu	8
-../Src/APP.c:208:7:Display_Time_And_Date	1
-../Src/APP.c:216:7:Set_Time_And_Date	1
-../Src/APP.c:224:7:Set_Alarm	3
-../Src/APP.c:249:7:Display_Alarms	2
-../Src/APP.c:267:6:APP_FirstSetUp	1
+../Src/APP.c:222:7:Display_Time_And_Date	1
+../Src/APP.c:230:7:Set_Time_And_Date	1
+../Src/APP.c:238:7:Set_Alarm	3
+../Src/APP.c:263:7:Display_Alarms	2
+../Src/APP.c:281:6:APP_FirstSetUp	1

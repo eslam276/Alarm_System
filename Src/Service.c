@@ -17,18 +17,65 @@ uint8_t Alarm[5][7]={0};
 
 void Print(uint8_t* Copy_pu8String)
 {
-    USART_voidTransmitStringSynch(USART_2 , Copy_pu8String);
+	USART_voidTransmitStringSynch(USART_2 , Copy_pu8String);
 }
+void Print_Time_Date(uint8_t* Copy_pu8String)
+{
+	SendChar(Copy_pu8String[4]);
+	SendChar(Copy_pu8String[5]);
+	Print(":");
+	SendChar(Copy_pu8String[2]);
+	SendChar(Copy_pu8String[3]);
+	Print(":");
+	SendChar(Copy_pu8String[0]);
+	SendChar(Copy_pu8String[1]);
+	Print("  ");
 
+	switch(Copy_pu8String[7])
+	{
+	case '1' :
+		Print("Monday  ");
+		break;
+	case '2':
+		Print("Tuesday  ");
+		break;
+	case '3':
+		Print("Wednesday  ");
+		break;
+	case '4':
+		Print("Thursday  ");
+		break;
+	case '5':
+		Print("Friday  ");
+		break;
+	case '6':
+		Print("Saturday  ");
+		break;
+	case '7':
+		Print("Sunday  ");
+		break;
+	}
+
+	SendChar(Copy_pu8String[8]);
+	SendChar(Copy_pu8String[9]);
+	Print("/");
+	SendChar(Copy_pu8String[10]);
+	SendChar(Copy_pu8String[11]);
+	Print("/");
+	SendChar(Copy_pu8String[12]);
+	SendChar(Copy_pu8String[13]);
+	Print("  ");
+
+}
 void Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size)
 {
-    USART_u8ReceiveBufferSynch(USART_2 , Copy_pu8String  , Copy_u8size );
+	USART_u8ReceiveBufferSynch(USART_2 , Copy_pu8String  , Copy_u8size );
 }
 
 
 void SendChar(uint8_t Copy_u8DataChar)
 {
-    USART_voidTransmitCharSynch(USART_2, Copy_u8DataChar);
+	USART_voidTransmitCharSynch(USART_2, Copy_u8DataChar);
 }
 
 
@@ -43,7 +90,7 @@ void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 	while(Copy_pu8String[LOCAL_u8LoopIterator] != '\r' )
 	{
 
-		
+
 		LOCAL_u8LoopIterator++;
 
 		if (LOCAL_u8LoopIterator == Copy_u8MaxSize - 1 )
@@ -53,9 +100,9 @@ void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 
 		USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
 
-		
+
 	}
-	
+
 	Copy_pu8String[LOCAL_u8LoopIterator] = 0 ;
 }
 
@@ -68,7 +115,7 @@ void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 
 void Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
 {
-	 USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
+	USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
 
 }
 
@@ -82,7 +129,7 @@ void SRV_SetTimeNDate(void)
 	uint8_t Local_u8TimeNDate[17];
 
 	Print ( (uint8_t*)"\r\n Set Time and Date for the first time: ");
-	Print ( (uint8_t*)"\r\n [1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)");
+	Print ( (uint8_t*)"\r\n [1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)\r\n");
 	//Hours
 	ReadCurrentDnTFromUser(Local_u8TimeNDate);
 
@@ -116,8 +163,9 @@ void SRV_ShowTimeNDate(void)
 		//local_u8TimeNDate[Local_u8Iterator] = BCDToDecimal(local_u8TimeNDate[Local_u8Iterator]);
 		HexToString(local_u8TimeNDate[Local_u8Iterator],&Local_u8StringBridge[Local_u8Iterator*2] );
 	}
-	Print (  (uint8_t*)"\r\n Time and Date:");
-	Send( Local_u8StringBridge ,14);
+	Print (  (uint8_t*)"\r\n Time and Date:  ");
+	//Send( Local_u8StringBridge ,14);
+	Print_Time_Date(Local_u8StringBridge);
 }
 
 void SRV_SetAlarm(uint8_t copy_u8AlarmNumber)
@@ -125,7 +173,7 @@ void SRV_SetAlarm(uint8_t copy_u8AlarmNumber)
 	uint8_t Local_u8Station[17];
 
 	Print ( (uint8_t*)"\r\n Set Time and Date: ");
-	Print ( (uint8_t*)"\r\n [1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)");
+	Print ( (uint8_t*)"\r\n [1mHH:MM:SS DAY DD/MM/YY Format(0 for 12h, 1 for 24h)\r\n");
 
 	ReadCurrentDnTFromUser(Local_u8Station);
 
