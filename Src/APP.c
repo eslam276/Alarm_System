@@ -122,13 +122,13 @@ void APP_voidLogin(void)
 
 	if (Local_u8Check == VALID)
 	{
-		Print("\r\n\r\n Welcome Eslam .................");
+		Print((uint8_t*)"\r\n\r\n Welcome Eslam .................");
 		/* turn on green LED on the kit */
 	}
 	else if (Local_u8Check == INVALID)
 	{
 
-		Print("\r\n\r\n The System is closed :(  ");
+		Print((uint8_t*)"\r\n\r\n The System is closed :(  ");
 		while (1)
 		{
 			/* code */
@@ -148,18 +148,18 @@ void APP_voidMenu(void)
 	uint8_t Local_u8Number ;
 
 	
-	Print("\r\n\r\n Menu : ");
-	Print("\r\n\r\n 1) Display time and date ");
-	Print("\r\n 2) Set time and date ");
-	Print("\r\n 3) Set Alarm ");
-	Print("\r\n 4) Display all Alarms ");
-	Print("\r\n 5) Exit \r\n");
+	Print((uint8_t*)"\r\n\r\n Menu : ");
+	Print((uint8_t*)"\r\n\r\n 1) Display time and date ");
+	Print((uint8_t*)"\r\n 2) Set time and date ");
+	Print((uint8_t*)"\r\n 3) Set Alarm ");
+	Print((uint8_t*)"\r\n 4) Display all Alarms ");
+	Print((uint8_t*)"\r\n 5) Exit \r\n");
 
 	Input(&Local_u8Number , 1);
 
 	while (Local_u8Number < '1' || Local_u8Number > '5')
 	{
-		Print("\r\n Please enter a valid number ... ");
+		Print((uint8_t*)"\r\n Please enter a valid number ... ");
 		Input(&Local_u8Number , 1);
 	}
 
@@ -171,7 +171,7 @@ void APP_voidMenu(void)
 
 		case '2' :
 			SRV_SetTimeNDate();
-			Print("\r\nTime and Date is set successfully. ;)");
+			Print((uint8_t*)"\r\nTime and Date is set successfully. ;)");
 			break;
 
 		case '3' :
@@ -222,7 +222,7 @@ void APP_voidMenu(void)
  void Display_Time_And_Date(void)
 {
 
-	Print("\r\n Display function...");
+	Print((uint8_t*)"\r\n Display function...");
 
 }
 
@@ -230,7 +230,7 @@ void APP_voidMenu(void)
  void Set_Time_And_Date(void)
 {
 
-	Print("\r\n Set time and date  function...");
+	Print((uint8_t*)"\r\n Set time and date  function...");
 
 }
 
@@ -240,20 +240,20 @@ void APP_voidMenu(void)
 	uint8_t Local_u8AlarmNumber ; 
 
 
-	Print("\r\n\r\n please Enter the alarm number from 1 to 5 : ");
+	Print((uint8_t*)"\r\n\r\n please Enter the alarm number from 1 to 5 : ");
 	Input(&Local_u8AlarmNumber,1);
 
 	while (Local_u8AlarmNumber < '1' || Local_u8AlarmNumber > '5')
 	{
-		Print("\r\n Please enter a valid number ... ");
+		Print((uint8_t*)"\r\n Please enter a valid number ... ");
 		Input(&Local_u8AlarmNumber , 1);
 	}
 
 
 	Local_u8AlarmNumber  = Local_u8AlarmNumber - 48 ;
 
-	Print("\r\n\r\n please Enter the alarm Name : ");
-	InputString( &Global_u8Alarms[Local_u8AlarmNumber - 1] , ALARM_NAME_LEGTH);
+	Print((uint8_t*)"\r\n\r\n please Enter the alarm Name : ");
+	InputString( (uint8_t*)&Global_u8Alarms[Local_u8AlarmNumber - 1] , ALARM_NAME_LEGTH);
 
 	
 
@@ -264,14 +264,14 @@ void APP_voidMenu(void)
  {
 	uint8_t LOCAL_u8LoopIterator ;
 
-	Print("\r\n");
+	Print((uint8_t*)"\r\n");
 
 	for(LOCAL_u8LoopIterator = 0 ; LOCAL_u8LoopIterator < NUM_OF_ALARMS  ; LOCAL_u8LoopIterator++)
 	{
-		Print("\r\n");
+		Print((uint8_t*)"\r\n");
 		SendChar(LOCAL_u8LoopIterator + 1 + 48 );
-		Print(") ");
-		Print(&Global_u8Alarms[LOCAL_u8LoopIterator]);
+		Print((uint8_t*)") ");
+		Print((uint8_t*)&Global_u8Alarms[LOCAL_u8LoopIterator]);
 	}
 	
  }
