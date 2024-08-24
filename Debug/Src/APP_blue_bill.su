@@ -1,5 +1,5 @@
 ../Src/APP_blue_bill.c:32:6:RCC_Clock_Init	8	static
-../Src/APP_blue_bill.c:40:6:Pins_Init	32	static
+../Src/APP_blue_bill.c:40:6:Pins_Init	48	static
 ../Src/APP_blue_bill.c:66:6:SPI1_Init	8	static
 ../Src/APP_blue_bill.c:79:6:EXTI13_Init	16	static
 ../Src/APP_blue_bill.c:90:6:Interrupts_Init	8	static

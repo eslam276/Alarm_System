@@ -54,14 +54,14 @@ void Pins_Init(void)
 
 	/* SPI Pins Configuration */
 	/* MOSI Pin */
-	GPIO_PinConfig_t MOSI_PIN = {.Mode = INPUT, .Input = FLOATING, .PinNum = PIN7, .Port = PORTA , .Output=AF_PUSH_PULL};
-
-	/* SCK Pin */
-	GPIO_PinConfig_t SCK_PIN = {.Mode = INPUT, .Input = FLOATING, .PinNum = PIN5, .Port = PORTA};
-
-	/* Initialize SPI1 Pins */
-	GPIO_u8PinInit(&MOSI_PIN);
-	GPIO_u8PinInit(&SCK_PIN);
+	GPIO_PinConfig_t NSS  ={ PORTA , PIN4 , INPUT , FLOATING , PULLUP_PULLDOWN  };
+	GPIO_u8PinInit(&NSS);
+	GPIO_PinConfig_t SCK  ={ PORTA , PIN5 , INPUT , FLOATING , PULLUP_PULLDOWN  };
+	GPIO_u8PinInit(&SCK);
+	GPIO_PinConfig_t MISO ={ PORTA , PIN6 , OUTPUT_SPEED_2MHz , AF_PUSH_PULL , PULLUP_PULLDOWN  };
+	GPIO_u8PinInit(&MISO);
+	GPIO_PinConfig_t MOSI ={ PORTA , PIN7 , INPUT , FLOATING , PULLUP_PULLDOWN  };
+	GPIO_u8PinInit(&MOSI);
 }
 void SPI1_Init(void)
 {
