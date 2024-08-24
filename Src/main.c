@@ -30,7 +30,7 @@ SPI_CONFIGS_t *SPICONFIG;
 extern uint8_t RecivedData[30]  ;
 
 
-volatile RECEIVING_VAL_t RECEIVING_VALUE ;
+volatile RECEIVING_VAL_t RECEIVING_VALUE = NO_RECEIVE;
 
 
 int main(void)
