@@ -54,7 +54,7 @@ void Pins_Init(void)
 
 	/* SPI Pins Configuration */
 	/* MOSI Pin */
-	GPIO_PinConfig_t MOSI_PIN = {.Mode = INPUT, .Input = FLOATING, .PinNum = PIN7, .Port = PORTA};
+	GPIO_PinConfig_t MOSI_PIN = {.Mode = INPUT, .Input = FLOATING, .PinNum = PIN7, .Port = PORTA , .Output=AF_PUSH_PULL};
 
 	/* SCK Pin */
 	GPIO_PinConfig_t SCK_PIN = {.Mode = INPUT, .Input = FLOATING, .PinNum = PIN5, .Port = PORTA};
