@@ -1,0 +1,8 @@
+../Src/CLCD_prog.c:37:6:CLCD_Init	56	static
+../Src/CLCD_prog.c:108:6:CLCD_SendCmd	24	static
+../Src/CLCD_prog.c:150:6:CLCD_SendData	24	static
+../Src/CLCD_prog.c:191:6:CLCD_PrintChar	16	static
+../Src/CLCD_prog.c:205:6:CLCD_PrintString	24	static
+../Src/CLCD_prog.c:224:6:CLCD_PrintNumber	32	static
+../Src/CLCD_prog.c:261:6:CLCD_GoToXY	24	static
+../Src/CLCD_prog.c:283:6:CLCD_ClearDisplay	8	static

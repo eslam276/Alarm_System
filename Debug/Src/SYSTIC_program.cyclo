@@ -1,0 +1,2 @@
+../Src/SYSTIC_program.c:15:9:SYSTIC_delay_ms	3
+../Src/SYSTIC_program.c:48:9:SYSTIC_delay_us	3

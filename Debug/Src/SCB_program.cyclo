@@ -1,0 +1,11 @@
+../Src/SCB_program.c:25:14:SCB_SetPriorityGroup	2
+../Src/SCB_program.c:49:6:SCB_EnableMemManageFault	1
+../Src/SCB_program.c:60:6:SCB_DisableMemManageFault	1
+../Src/SCB_program.c:71:6:SCB_EnableBusFault	1
+../Src/SCB_program.c:82:6:SCB_DisableBusFault	1
+../Src/SCB_program.c:93:6:SCB_EnableUsageFault	1
+../Src/SCB_program.c:104:6:SCB_DisableUsageFault	1
+../Src/SCB_program.c:119:14:SCB_SetSysHandlerState	2
+../Src/SCB_program.c:142:14:SCB_ClearSysHandlerState	2
+../Src/SCB_program.c:165:6:SCB_EnableDivByZero	1
+../Src/SCB_program.c:177:6:SCB_DisableDivByZero	1

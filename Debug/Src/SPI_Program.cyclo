@@ -1,0 +1,12 @@
+../Src/SPI_Program.c:39:14:SPI_Init	5
+../Src/SPI_Program.c:114:14:SPI_Transmit	5
+../Src/SPI_Program.c:153:14:SPI_Receive	9
+../Src/SPI_Program.c:215:14:SPI_Transmit_IT	5
+../Src/SPI_Program.c:264:14:SPI_Receive_IT	6
+../Src/SPI_Program.c:321:14:SPI_Enable_DMA_RX	2
+../Src/SPI_Program.c:341:14:SPI_Enable_DMA_TX	2
+../Src/SPI_Program.c:364:14:SPI_SET_Internal_Slave_State	4
+../Src/SPI_Program.c:398:21:SPI_Check_Configs	20
+../Src/SPI_Program.c:484:13:SPI_IRQ_Source_HANDLE	7
+../Src/SPI_Program.c:568:6:SPI1_IRQHandler	1
+../Src/SPI_Program.c:573:6:SPI2_IRQHandler	1
