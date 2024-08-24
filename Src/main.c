@@ -38,6 +38,7 @@ int main(void)
 
 	RCC_Clock_Init();
 	Pins_Init();
+	CLCD_voidPinInit();
 	CLCD_voidInit();
 	SPI1_Init();
 	EXTI13_Init();
