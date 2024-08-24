@@ -26,7 +26,7 @@
 #include "BZR_interface.h"
 #include "CLCD_interface.h"
 
-SPI_CONFIGS_t *SPICONFIG;
+extern SPI_CONFIGS_t *SPICONFIG;
 extern uint8_t RecivedData[30]  ;
 
 

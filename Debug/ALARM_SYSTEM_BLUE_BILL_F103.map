@@ -448,8 +448,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Src/main.o
  .data          0x0000000000000000        0x0 ./Src/main.o
  .bss           0x0000000000000000        0x0 ./Src/main.o
- .bss.SPICONFIG
-                0x0000000000000000        0x4 ./Src/main.o
  .debug_macro   0x0000000000000000      0xaa2 ./Src/main.o
  .debug_macro   0x0000000000000000       0x22 ./Src/main.o
  .debug_macro   0x0000000000000000       0x8e ./Src/main.o
@@ -1382,7 +1380,7 @@ LOAD C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .comment       0x0000000000000043       0x44 ./Src/SYSTIC_program.o
  .comment       0x0000000000000043       0x44 ./Src/main.o
 
-.debug_info     0x0000000000000000     0x3e95
+.debug_info     0x0000000000000000     0x3e8f
  .debug_info    0x0000000000000000      0x252 ./Src/AFIO_Program.o
  .debug_info    0x0000000000000252      0xbc5 ./Src/APP_blue_bill.o
  .debug_info    0x0000000000000e17      0x2c8 ./Src/BZR_prog.o
@@ -1394,8 +1392,8 @@ LOAD C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_info    0x000000000000283a      0x643 ./Src/RCC_Program.o
  .debug_info    0x0000000000002e7d      0x8a1 ./Src/SPI_Program.o
  .debug_info    0x000000000000371e      0x18c ./Src/SYSTIC_program.o
- .debug_info    0x00000000000038aa      0x5c8 ./Src/main.o
- .debug_info    0x0000000000003e72       0x23 ./Startup/startup_stm32f103c8tx.o
+ .debug_info    0x00000000000038aa      0x5c2 ./Src/main.o
+ .debug_info    0x0000000000003e6c       0x23 ./Startup/startup_stm32f103c8tx.o
 
 .debug_abbrev   0x0000000000000000      0xec3
  .debug_abbrev  0x0000000000000000       0xe5 ./Src/AFIO_Program.o
