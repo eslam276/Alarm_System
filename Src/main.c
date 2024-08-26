@@ -20,17 +20,16 @@
 #include "stm32f103xx.h"
 #include "ErrType.h"
 
-#include "SPI_interface.h"
+#include "USART_interface.h"
 #include "APP_blue_bill.h"
 #include "LED_interface.h"
 #include "BZR_interface.h"
 #include "CLCD_interface.h"
 
-extern SPI_CONFIGS_t *SPICONFIG;
 extern uint8_t RecivedData[30]  ;
 
 
-volatile RECEIVING_VAL_t RECEIVING_VALUE = NO_RECEIVE;
+volatile RECEIVING_VAL_t RECEIVING_VALUE = NO_RECEIVE ;
 
 
 int main(void)
@@ -40,16 +39,26 @@ int main(void)
 	Pins_Init();
 	CLCD_voidPinInit();
 	CLCD_voidInit();
-	SPI1_Init();
 	EXTI13_Init();
 	Interrupts_Init();
-	Receive_withInterrupt();
-
+	//Receive_withInterrupt();
+	USART_ConfigReg_t Local_USART2Tx={
+				.USART_BAUDRATE = 9600,
+				.USART_HWFLOWCONTROL = USART_HW_FLOW_CONTROL_OFF,
+				.USART_MODE = USART_RXTX,
+				.USART_PARITYBIT = PARITY_CONTROL_DISABLE,
+				.USART_STOPBITS = _1_STOP_BIT,
+				.USART_SYNCHMODE = CLOCK_DISABLE,
+				.USART_USARTNUMBER = USART_NUM2,
+				.USART_WORDLENGTH = _8_DATA_BITS
+		};
+	USART_Init(&Local_USART2Tx);
 uint16_t TestArr[15];
-SPI_Receive(SPICONFIG, TestArr, 7);
+
 
 for(uint8_t count=0 ;count<15 ;count++)
 {
+	USART_ReceiveData(&Local_USART2Tx , &TestArr);
 	CLCD_voidSendNumber(TestArr[count]);
 }
     /* Loop forever */

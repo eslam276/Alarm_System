@@ -23,7 +23,10 @@
 #define DMA2_ADDRESS_BASE               0x40020400UL
 
 /**********************************          APB1 Peripheral Base Addresses          **********************************/
-
+#define	USART5_BASE_ADDRESS			0x40005000UL				/*UNIVERASL SYNCH/ASYNCH RECEIVER TRANSMITTER 5*/
+#define	USART4_BASE_ADDRESS			0x40004C00UL				/*UNIVERASL SYNCH/ASYNCH RECEIVER TRANSMITTER 4*/
+#define	USART3_BASE_ADDRESS			0x40004800UL				/*UNIVERASL SYNCH/ASYNCH RECEIVER TRANSMITTER 3*/
+#define	USART2_BASE_ADDRESS			0x40004400UL				/*UNIVERASL SYNCH/ASYNCH RECEIVER TRANSMITTER 2*/
 
 #define SPI3_BASE_ADDRESS			0x40003C00UL				/*Serial Peripheral Interface 3*/
 #define SPI2_BASE_ADDRESS			0x40003800UL	            /*Serial Peripheral Interface 2*/
@@ -38,6 +41,7 @@
 #define GPIOF_BASE_ADDRESS         0x40011C00UL
 #define GPIOG_BASE_ADDRESS         0x40012000UL
 
+#define	USART1_BASE_ADDRESS			0x40013800UL				/*UNIVERASL SYNCH/ASYNCH RECEIVER TRANSMITTER 1*/
 #define SPI1_BASE_ADDRESS			0x40013000UL				/*Serial Peripheral Interface 1*/
 
 /***************RCC Register Definition Structure****************/
@@ -185,6 +189,25 @@ typedef struct{
 #define DMA1		((DMA_RegDef_t *)DMA1_ADDRESS_BASE)
 #define DMA2    	((DMA_RegDef_t *)DMA2_ADDRESS_BASE)
 
+
+/***************USART Register Definition Structure****************/
+typedef struct{
+
+	volatile uint32_t USART_SR;
+	volatile uint32_t USART_DR;
+	volatile uint32_t USART_BRR;
+	volatile uint32_t USART_CR1;
+	volatile uint32_t USART_CR2;
+	volatile uint32_t USART_CR3;
+	volatile uint32_t USART_GTPR;
+
+}USART_Reg_t;
+/***************USART Register Definition ****************/
+#define	USART1	((USART_Reg_t*)USART1_BASE_ADDRESS)
+#define	USART2	((USART_Reg_t*)USART2_BASE_ADDRESS)
+#define	USART3	((USART_Reg_t*)USART3_BASE_ADDRESS)
+#define	USART4	((USART_Reg_t*)USART4_BASE_ADDRESS)
+#define	USART5	((USART_Reg_t*)USART5_BASE_ADDRESS)
 
 /***************SPI Register Definition Structure****************/
 typedef struct{

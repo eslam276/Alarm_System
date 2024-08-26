@@ -1,0 +1,16 @@
+../Src/USART_prog.c:48:14:USART_Init	40	static
+../Src/USART_prog.c:164:14:USART_TransmitData	24	static
+../Src/USART_prog.c:209:6:USART_TransmitString	24	static
+../Src/USART_prog.c:228:14:USART_ReceiveData	24	static
+../Src/USART_prog.c:264:14:USART_TransmitDataEnable_DMA	24	static
+../Src/USART_prog.c:290:14:USART_ReceiveDataEnable_DMA	24	static
+../Src/USART_prog.c:318:14:USART_Transmit_IT	32	static
+../Src/USART_prog.c:348:14:USART_Receive_IT	32	static
+../Src/USART_prog.c:377:14:USART_SetCallBack	24	static
+../Src/USART_prog.c:400:6:USART_IRQ_Handler	24	static
+../Src/USART_prog.c:442:14:USART_ReadIntFlag	24	static
+../Src/USART_prog.c:469:6:USART1_IRQHandler	8	static
+../Src/USART_prog.c:474:6:USART2_IRQHandler	8	static
+../Src/USART_prog.c:479:6:USART3_IRQHandler	8	static
+../Src/USART_prog.c:484:6:UART4_IRQHandler	8	static
+../Src/USART_prog.c:489:6:UART5_IRQHandler	8	static
