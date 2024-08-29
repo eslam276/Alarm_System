@@ -20,17 +20,22 @@
 #include "stm32f103xx.h"
 #include "ErrType.h"
 
+#include "SYSTIC_interface.h"
 #include "USART_interface.h"
 #include "APP_blue_bill.h"
 #include "LED_interface.h"
 #include "BZR_interface.h"
 #include "CLCD_interface.h"
 
-extern uint8_t RecivedData[30]  ;
+extern uint8_t RecivedData[14]  ;
 
 
-volatile RECEIVING_VAL_t RECEIVING_VALUE = NO_RECEIVE ;
-
+void MUSART1_u8ReceiveArray(uint8_t* arr, uint16_t size) {
+    for (uint16_t i = 0; i < size; i++) {
+        arr[i] = MUSART1_u8Receive();
+		SYSTIC_delay_ms(10);
+    }
+}
 
 int main(void)
 {
@@ -39,91 +44,39 @@ int main(void)
 	Pins_Init();
 	CLCD_voidPinInit();
 	CLCD_voidInit();
-	EXTI13_Init();
 	Interrupts_Init();
-	//Receive_withInterrupt();
-	USART_ConfigReg_t Local_USART2Tx={
-				.USART_BAUDRATE = 9600,
-				.USART_HWFLOWCONTROL = USART_HW_FLOW_CONTROL_OFF,
-				.USART_MODE = USART_RXTX,
-				.USART_PARITYBIT = PARITY_CONTROL_DISABLE,
-				.USART_STOPBITS = _1_STOP_BIT,
-				.USART_SYNCHMODE = CLOCK_DISABLE,
-				.USART_USARTNUMBER = USART_NUM2,
-				.USART_WORDLENGTH = _8_DATA_BITS
-		};
-	USART_Init(&Local_USART2Tx);
-uint16_t TestArr[15];
+	MUSART1_voidInit();
 
+	uint8_t Check ;
+	uint8_t Read_Pin ;
 
-for(uint8_t count=0 ;count<15 ;count++)
-{
-	USART_ReceiveData(&Local_USART2Tx , &TestArr);
-	CLCD_voidSendNumber(TestArr[count]);
-}
-    /* Loop forever */
-	for(;;)
+	Check = MUSART1_u8Receive();
+
+	/* Loop forever */
+
+	if(Check== '2')
 	{
-		while(!RECEIVING_VALUE);
-		switch (RECEIVING_VALUE)
+		TURN_ON_LED();
+		CLEAR_DISPLAY();
+		while(1);
+	}
+	else if(Check== '1')
+	{
+		for(;;)
 		{
-			case RED_LED_RECEIVED:
-				TURN_ON_LED();
-				CLEAR_DISPLAY();
-				while(1);
 
-				break;
-			case ALARM_RECEIVED :
+			LED_On(PORTC, PIN15) ;
+			SYSTIC_delay_ms(1000);
+			MUSART1_u8ReceiveArray(&RecivedData , 14);
+			Display_Date();
+			_delay_1s();
+			Display_Time();
+			GPIO_u8ReadPinValue(PORTB, PIN13, &Read_Pin);
+			if(Read_Pin== PIN_LOW)
+			{
 				DisplayAlarmInfo();
-				BZR_Off();
-
-				RECEIVING_VALUE= NO_RECEIVE;
-				break;
-
-			case DISPLAY_RECEIVED :
-				Display_Date();
-				/*Count_Time();*/
-				_delay_1s();
-				Display_Time();
-
-				break ;
-
-			case GREEN_LED_RECEIVED :
-
-					LED_On(PORTC, PIN15) ;
-
-					RECEIVING_VALUE =NO_RECEIVE ;
-			default:
-				break;
+				LED_Toggle(PORTC, PIN14);
+			}
 		}
 	}
-}
-
-
-void SPI1_CallBack(void)
-{
-
-    if(RecivedData[0]== RED_LED_CODE)
-    {
-    	RECEIVING_VALUE=RED_LED_RECEIVED ;
-    }
-    else if(RecivedData[0]== ALARMCODE)
-    {
-    	RECEIVING_VALUE=ALARM_RECEIVED ;
-    }
-    else if(RecivedData[0]== DISPLAY_CODE)
-    {
-    	RECEIVING_VALUE=DISPLAY_RECEIVED ;
-    }
-    else if(RecivedData[0]== GREEN_LED_CODE)
-    {
-    	RECEIVING_VALUE=GREEN_LED_RECEIVED ;
-    }
-
-    Receive_withInterrupt();
-}
-
-void EXTI13_ISR()
-{
-	BZR_On();
 }

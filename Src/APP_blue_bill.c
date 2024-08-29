@@ -21,12 +21,9 @@
 #include "CLCD_interface.h"
 
 #include "APP_blue_bill.h"
-#include "APP_blue_bill_prv.h"
 
 
-/* Global Pointer to SPI_CONFIGS_t Struct */
-
-uint8_t RecivedData[30] ={0};
+uint8_t RecivedData[14] ={0};
 
 void RCC_Clock_Init(void)
 {
@@ -37,7 +34,7 @@ void RCC_Clock_Init(void)
 	RCC_APB2EnableClock(APB2_IOPC);
 /*	RCC_APB2EnableClock(APB2_SPI1);*/
 	RCC_APB2EnableClock(APB2_AFIO);
-	RCC_APB1EnableClock(APB1_USART2);
+	RCC_APB2EnableClock(APB2_USART);
 }
 void Pins_Init(void)
 {
@@ -45,18 +42,19 @@ void Pins_Init(void)
 	LED_Init(PORTA ,PIN2);
 	/* GREEN LED Configuration*/
 	LED_Init(PORTC ,PIN15);
+	LED_Init(PORTC ,PIN14);
 	/*BUZZER Configuration*/
 	BZR_Init();
 
-	/* Initialize the EXTI Pin */
-	GPIO_PinConfig_t EXTI_PC1 = {.Port = PORTC, .PinNum = PIN13, .Mode = INPUT,  .Input = PULLUP_PULLDOWN};
+	/* Initialize the Read Pin */
+	GPIO_PinConfig_t Read_Pin = {.Port = PORTB, .PinNum = PIN13, .Mode = INPUT,  .Input = PULLUP_PULLDOWN};
 
 	/* Initialize the EXTI Pin */
-	GPIO_u8PinInit(&EXTI_PC1);
+	GPIO_u8PinInit(&Read_Pin);
     /*USART PINS Configuration*/
 	GPIO_PinConfig_t Local_TxConfig={
 				.Port = PORTA,
-				.PinNum = PIN2,
+				.PinNum = PIN9,
 				.Mode = OUTPUT_SPEED_10MHz,
 				.Output = AF_PUSH_PULL,
 				.Input = FLOATING
@@ -64,53 +62,20 @@ void Pins_Init(void)
 	GPIO_u8PinInit(&Local_TxConfig);
 	GPIO_PinConfig_t Local_RxConfig={
 				.Port = PORTA,
-				.PinNum = PIN3,
+				.PinNum = PIN10,
 				.Mode = INPUT,
 				.Output = AF_PUSH_PULL,
 				.Input = FLOATING
 		};
 	GPIO_u8PinInit(&Local_RxConfig);
-	/* SPI Pins Configuration */
-	/* MOSI Pin */
-	/*GPIO_PinConfig_t NSS  ={ PORTA , PIN4 , INPUT , FLOATING , PULLUP_PULLDOWN  };
-	GPIO_u8PinInit(&NSS);
-	GPIO_PinConfig_t SCK  ={ PORTA , PIN5 , INPUT , FLOATING , PULLUP_PULLDOWN  };
-	GPIO_u8PinInit(&SCK);
-	GPIO_PinConfig_t MISO ={ PORTA , PIN6 , OUTPUT_SPEED_2MHz , AF_PUSH_PULL , PULLUP_PULLDOWN  };
-	GPIO_u8PinInit(&MISO);
-	GPIO_PinConfig_t MOSI ={ PORTA , PIN7 , INPUT , FLOATING , PULLUP_PULLDOWN  };
-	GPIO_u8PinInit(&MOSI);*/
+
 }
-void SPI1_Init(void)
-{
 
-	/* Initialize SPI Configuration */
-	/*	static SPI_CONFIGS_t SPI1_Config =
-			{
-				.CRC_State = CRC_STATE_DISABLED, .Chip_Mode = CHIP_MODE_SLAVE, .Clock_Phase = CLOCK_PHASE_CAPTURE_FIRST, .Clock_Polarity = CLOCK_POLARITY_IDLE_LOW, .Frame_Size = DATA_FRAME_SIZE_8BITS, .Frame_Type = FRAME_FORMAT_MSB_FIRST, .SPI_Num = SPI_NUMBER1, .Slave_Manage_State = SLAVE_MANAGE_SW_SLAVE_ACTIVE, .Transfer_Mode = TRANSFER_MODE_FULL_DUPLEX};*/
-
-		/* Initialize SPI */
-	/*	SPI_Init(&SPI1_Config);*/
-
-		/* Initialize SPI1 Configuration Struct Globally */
-	/*	SPICONFIG = &SPI1_Config;*/
-}
-void EXTI13_Init(void)
-{
-	/* Initialize the EXTI Configuration */
-	EXTI_Confg PC1_EXTIConfig = {.LINE = EXTI13, .Mode = Enable, .Trigger = RaisingEdge, .EXTI_CallBackFunc = &EXTI13_ISR};
-
-	/* Initialize the EXTI */
-	EXTI_Init(&PC1_EXTIConfig);
-
-	/* Initialize the AFIO For EXTI13 */
-	AFIO_U8SetEXTIPort(AFIO_EXTI13, AFIO_PortC);
-}
 void Interrupts_Init(void)
 {
 	NVIC_EnableIRQ(NVIC_IRQ_SPI1);
 	NVIC_EnableIRQ(NVIC_IRQ_EXTI15_10);
-	NVIC_EnableIRQ(NVIC_IRQ_USART1);
+	NVIC_EnableIRQ(NVIC_IRQ_USART2);
 }
 void DisplayAlarmInfo(void)
 {
@@ -141,16 +106,16 @@ void Display_Time(void)
 {
 	CLCD_voidGoToXY(1, 0);
 
-	CLCD_voidSendNumber(RecivedData[5]);
-	CLCD_voidSendNumber(RecivedData[6]);
-	CLCD_voidSendData(':');
-
-	CLCD_voidSendNumber(RecivedData[3]);
 	CLCD_voidSendNumber(RecivedData[4]);
+	CLCD_voidSendNumber(RecivedData[5]);
 	CLCD_voidSendData(':');
 
-	CLCD_voidSendNumber(RecivedData[1]);
 	CLCD_voidSendNumber(RecivedData[2]);
+	CLCD_voidSendNumber(RecivedData[3]);
+	CLCD_voidSendData(':');
+
+	CLCD_voidSendNumber(RecivedData[0]);
+	CLCD_voidSendNumber(RecivedData[1]);
 	CLCD_voidSendData(':');
 
 }
@@ -160,8 +125,8 @@ void Display_Date(void)
 
 	switch (RecivedData[7])
 	{
-	case '1'    : CLCD_u8SendString( (char *)"SUN") ; break;
-	case '2'    : CLCD_u8SendString( (char *)"MON") ; break;
+	case '1'    : CLCD_u8SendString( (char *)"MON") ; break;
+	case '2'    : CLCD_u8SendString( (char *)"TUE") ; break;
 	case '3'    : CLCD_u8SendString( (char *)"TUE") ; break;
 	case '4'    : CLCD_u8SendString( (char *)"WED") ; break;
 	case '5'    : CLCD_u8SendString( (char *)"THU") ; break;
@@ -177,8 +142,7 @@ void Display_Date(void)
 	CLCD_voidSendNumber(RecivedData[11]);
 	CLCD_voidSendData('/');
 
-	CLCD_voidSendNumber(RecivedData[12]);
-	CLCD_voidSendNumber(RecivedData[13]);
+	CLCD_voidSendNumber(2025);
 
 }
 void TURN_ON_LED(void)
