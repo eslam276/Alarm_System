@@ -33,7 +33,6 @@ extern uint8_t RecivedData[14]  ;
 void MUSART1_u8ReceiveArray(uint8_t* arr, uint16_t size) {
     for (uint16_t i = 0; i < size; i++) {
         arr[i] = MUSART1_u8Receive();
-		SYSTIC_delay_ms(10);
     }
 }
 
@@ -66,10 +65,8 @@ int main(void)
 		{
 
 			LED_On(PORTC, PIN15) ;
-			SYSTIC_delay_ms(1000);
 			MUSART1_u8ReceiveArray(&RecivedData , 14);
 			Display_Date();
-			_delay_1s();
 			Display_Time();
 			GPIO_u8ReadPinValue(PORTB, PIN13, &Read_Pin);
 			if(Read_Pin== PIN_LOW)
