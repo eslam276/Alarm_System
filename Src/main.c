@@ -45,7 +45,9 @@ int main(void)
 	CLCD_voidInit();
 	Interrupts_Init();
 	MUSART1_voidInit();
-
+	CLCD_u8SendString("Welcome to Alarm");
+	SYSTIC_delay_ms(2000);
+	CLEAR_DISPLAY();
 	uint8_t Check ;
 	uint8_t Read_Pin ;
 
@@ -56,7 +58,7 @@ int main(void)
 	if(Check== '2')
 	{
 		TURN_ON_LED();
-		CLEAR_DISPLAY();
+		CLCD_u8SendString("System is closed");
 		while(1);
 	}
 	else if(Check== '1')
@@ -65,6 +67,9 @@ int main(void)
 		{
 
 			LED_On(PORTC, PIN15) ;
+			CLCD_u8SendString("System is opened");
+			SYSTIC_delay_ms(2000);
+			CLEAR_DISPLAY();
 			MUSART1_u8ReceiveArray(&RecivedData , 14);
 			Display_Date();
 			Display_Time();
