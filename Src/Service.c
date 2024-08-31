@@ -6,8 +6,10 @@
 #include "DS1307_interface.h"
 #include "Service_prv.h"
 #include "SYSTIC_interface.h"
+#include "GPIO_interface.h"
 
 
+extern GPIO_PIN_CFG_t PINA5 ;
 
 extern I2C_config_t 		I2C1_SysConfig;
 extern RTC_Config_t RTC_DS1307_Config;

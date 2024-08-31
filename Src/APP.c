@@ -9,6 +9,15 @@
 I2C_config_t 		I2C1_SysConfig;
 RTC_Config_t RTC_DS1307_Config;
 
+GPIO_PIN_CFG_t PINA5 =
+	{
+			.Port = PORTA ,
+			.PinNum = PIN5 ,
+			.Mode = OUTPUT ,
+			.OutputType = PUSH_PULL
+
+	};
+
 
 static uint8_t Global_u8Alarms[NUM_OF_ALARMS][ALARM_NAME_LEGTH] = { "Alarm 1" , "Alarm 2" , "Alarm 3" ,"Alarm 4" , "Alarm 5"};
 
@@ -17,6 +26,7 @@ static void Display_Time_And_Date(void);
 static void Set_Time_And_Date(void);
 static void Set_Alarm(void);
 static void Display_Alarms(void);
+void UART_init(void);
 
 
 
@@ -32,14 +42,7 @@ void APP_voidInit(void)
 	 RCC_APB1Enable(APB1_I2C1);
 
 
-	 GPIO_PIN_CFG_t PINA5 =
-	 {
-			 .Port = PORTA ,
-			 .PinNum = PIN5 ,
-			 .Mode = OUTPUT ,
-			 .OutputType = PUSH_PULL
-
-	 };
+	
 
 
 
@@ -109,10 +112,42 @@ void APP_voidInit(void)
 	 I2C_Init(&I2C1_SysConfig);
 
 
-
+	UART_init();
 
 }
 
+void UART_init(void)
+{
+
+	RCC_APB1Enable(APB1_UART4);
+	USART_Cnfg_t UART4 =
+	{
+			.USART_Num = UART_4 ,
+			.Parity = PARITY_DISABLED ,
+			.Word = EIGHT ,
+			.OverSampling = OVER8 ,
+			.Mode = RX_TX ,
+			.RX_INT = RXINT_DISABLE
+
+
+	};
+	GPIO_PIN_CFG_t USART_TX_PIN = {
+			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN0, .Port=PORTA
+	};
+
+	GPIO_PIN_CFG_t USART_RX_PIN = {
+			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN1, .Port=PORTA
+	};
+	GPIO_u8PinInit(&USART_TX_PIN);
+	GPIO_u8PinInit(&USART_RX_PIN);
+
+
+
+
+	USART_u8Init(&UART4);
+}
 
 
 
