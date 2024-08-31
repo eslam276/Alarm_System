@@ -79,6 +79,11 @@ void SendChar(uint8_t Copy_u8DataChar)
 {
 	USART_voidTransmitCharSynch(USART_2, Copy_u8DataChar);
 }
+void SendCharLogin(uint8_t Copy_u8DataChar)
+{
+	USART_voidTransmitCharSynch(UART_4, Copy_u8DataChar);
+}
+
 
 
 
@@ -119,6 +124,10 @@ void Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
 {
 	USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
 
+}
+void SendOUT(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
+{
+	USART_voidTransmitBufferSynch( UART_4 ,  Copy_pu8Buffer  ,  Copy_u8size );
 }
 
 
