@@ -1,9 +1,3 @@
-/*************************************************/
-/* @file RCC_prog.c
- * @author Ahmed Abdelaziz
- * @brief The RCC main source file, including functions definitions
- *
- */
 
 
 #include <stdint.h>
