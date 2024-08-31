@@ -159,15 +159,19 @@ void APP_voidLogin(void)
 	{
 		Print((uint8_t*)"\r\n\r\n Welcome Eslam .................");
 		/* turn on green LED on the kit */
+		SendCharLogin('1');
 	}
 	else if (Local_u8Check == INVALID)
 	{
 
 		Print((uint8_t*)"\r\n\r\n The System is closed :(  ");
+		/* turn on red LED on the kit */
+			SendCharLogin('2');
+
 		while (1)
 		{
 			/* code */
-			/* turn on red LED on the kit */
+			
 		}
 		
 	}
