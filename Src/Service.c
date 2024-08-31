@@ -21,6 +21,7 @@ void Print(uint8_t* Copy_pu8String)
 {
 	USART_voidTransmitStringSynch(USART_2 , Copy_pu8String);
 }
+
 void Print_Time_Date(uint8_t* Copy_pu8String)
 {
 	SendChar(Copy_pu8String[4]);

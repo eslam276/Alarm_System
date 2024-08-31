@@ -34,6 +34,7 @@ void APP_voidInit(void)
 	 RCC_AHB1EnableClk(AHB1_GPIOB);
 
 	 RCC_APB1Enable(APB1_USART2);
+	 RCC_APB1Enable(APB1_UART4);
 	 RCC_APB1Enable(APB1_I2C1);
 
 
@@ -50,6 +51,41 @@ void APP_voidInit(void)
 	 GPIO_PIN_CFG_t USART_RX_PIN = {
 			.AltFunc=AF7, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
 			.PinNum=PIN3, .Port=PORTA
+	};
+
+
+	USART_Cnfg_t UART2 =
+		{
+			.USART_Num = USART_2 ,
+			.Parity = PARITY_DISABLED ,
+			.Word = EIGHT ,
+			.OverSampling = OVER8 ,
+			.Mode = RX_TX ,
+			.RX_INT = RXINT_DISABLE
+
+
+		};
+
+
+	USART_Cnfg_t UART4 =
+	{
+			.USART_Num = UART_4 ,
+			.Parity = PARITY_DISABLED ,
+			.Word = EIGHT ,
+			.OverSampling = OVER8 ,
+			.Mode = RX_TX ,
+			.RX_INT = RXINT_DISABLE
+
+
+	};
+	GPIO_PIN_CFG_t UART4_TX_PIN = {
+			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN0, .Port=PORTA
+	};
+
+	GPIO_PIN_CFG_t UART4_RX_PIN = {
+			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
+			.PinNum=PIN1, .Port=PORTA
 	};
 
 
@@ -77,17 +113,7 @@ void APP_voidInit(void)
 
 	
 
-		USART_Cnfg_t UART2 =
-		{
-			.USART_Num = USART_2 ,
-			.Parity = PARITY_DISABLED ,
-			.Word = EIGHT ,
-			.OverSampling = OVER8 ,
-			.Mode = RX_TX ,
-			.RX_INT = RXINT_DISABLE
-
-
-		};
+		
 
 
 
@@ -102,47 +128,21 @@ void APP_voidInit(void)
 	 GPIO_u8PinInit(&GPIO_SDA);
 	 GPIO_u8PinInit(&GPIO_SCL);
 
-
-	 USART_u8Init(&UART2);
-	 I2C_Init(&I2C1_SysConfig);
-
-
-	UART_init();
-
-}
-
-void UART_init(void)
-{
-
-	RCC_APB1Enable(APB1_UART4);
-	USART_Cnfg_t UART4 =
-	{
-			.USART_Num = UART_4 ,
-			.Parity = PARITY_DISABLED ,
-			.Word = EIGHT ,
-			.OverSampling = OVER8 ,
-			.Mode = RX_TX ,
-			.RX_INT = RXINT_DISABLE
-
-
-	};
-	GPIO_PIN_CFG_t USART_TX_PIN = {
-			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
-			.PinNum=PIN0, .Port=PORTA
-	};
-
-	GPIO_PIN_CFG_t USART_RX_PIN = {
-			.AltFunc=AF8, .Mode=ALTERNATIVE_FUNCTION, .OutputType=PUSH_PULL,
-			.PinNum=PIN1, .Port=PORTA
-	};
-	GPIO_u8PinInit(&USART_TX_PIN);
-	GPIO_u8PinInit(&USART_RX_PIN);
+	 GPIO_u8PinInit(&UART4_TX_PIN);
+	 GPIO_u8PinInit(&UART4_RX_PIN);
 
 
 
 
 	USART_u8Init(&UART4);
+	USART_u8Init(&UART2);
+	I2C_Init(&I2C1_SysConfig);
+
+
+	
+
 }
+
 
 
 
@@ -242,14 +242,6 @@ void APP_voidMenu(void)
 
 
 }
-
-
-
-
-
-
-
-
 
 
 
