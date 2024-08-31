@@ -9,8 +9,6 @@
 #include "USART_interface.h"
 
 
-#define NUM_OF_ALARMS      5
-#define ALARM_NAME_LEGTH   30
 
 
 void APP_voidInit(void);

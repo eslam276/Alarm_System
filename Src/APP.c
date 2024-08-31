@@ -19,13 +19,8 @@ GPIO_PIN_CFG_t PINA5 =
 	};
 
 
-static uint8_t Global_u8Alarms[NUM_OF_ALARMS][ALARM_NAME_LEGTH] = { "Alarm 1" , "Alarm 2" , "Alarm 3" ,"Alarm 4" , "Alarm 5"};
 
 
-static void Display_Time_And_Date(void);
-static void Set_Time_And_Date(void);
-static void Set_Alarm(void);
-static void Display_Alarms(void);
 void UART_init(void);
 
 
@@ -191,12 +186,11 @@ void APP_voidMenu(void)
 	Print((uint8_t*)"\r\n\r\n 1) Display time and date ");
 	Print((uint8_t*)"\r\n 2) Set time and date ");
 	Print((uint8_t*)"\r\n 3) Set Alarm ");
-	Print((uint8_t*)"\r\n 4) Display all Alarms ");
-	Print((uint8_t*)"\r\n 5) Exit \r\n");
+	Print((uint8_t*)"\r\n 4) Exit \r\n");
 
 	Input(&Local_u8Number , 1);
 
-	while (Local_u8Number < '1' || Local_u8Number > '5')
+	while (Local_u8Number < '1' || Local_u8Number > '4')
 	{
 		Print((uint8_t*)"\r\n Please enter a valid number ... ");
 		Input(&Local_u8Number , 1);
@@ -231,11 +225,9 @@ void APP_voidMenu(void)
 			SRV_SetAlarm((Local_u8AlarmNumber-49));
 			break;
 
-		case '4' :
-			Display_Alarms();
-			break;
+		
 
-		case '5' :
+		case '4' :
 			while (1)
 			{
 				/* Do nothing  */
@@ -258,62 +250,8 @@ void APP_voidMenu(void)
 
 
 
- void Display_Time_And_Date(void)
-{
-
-	Print((uint8_t*)"\r\n Display function...");
-
-}
 
 
- void Set_Time_And_Date(void)
-{
-
-	Print((uint8_t*)"\r\n Set time and date  function...");
-
-}
-
-
- void Set_Alarm(void)
-{
-	uint8_t Local_u8AlarmNumber ; 
-
-
-	Print((uint8_t*)"\r\n\r\n please Enter the alarm number from 1 to 5 : ");
-	Input(&Local_u8AlarmNumber,1);
-
-	while (Local_u8AlarmNumber < '1' || Local_u8AlarmNumber > '5')
-	{
-		Print((uint8_t*)"\r\n Please enter a valid number ... ");
-		Input(&Local_u8AlarmNumber , 1);
-	}
-
-
-	Local_u8AlarmNumber  = Local_u8AlarmNumber - 48 ;
-
-	Print((uint8_t*)"\r\n\r\n please Enter the alarm Name : ");
-	InputString( (uint8_t*)&Global_u8Alarms[Local_u8AlarmNumber - 1] , ALARM_NAME_LEGTH);
-
-	
-
-}
-
-
- void Display_Alarms(void)
- {
-	uint8_t LOCAL_u8LoopIterator ;
-
-	Print((uint8_t*)"\r\n");
-
-	for(LOCAL_u8LoopIterator = 0 ; LOCAL_u8LoopIterator < NUM_OF_ALARMS  ; LOCAL_u8LoopIterator++)
-	{
-		Print((uint8_t*)"\r\n");
-		SendChar(LOCAL_u8LoopIterator + 1 + 48 );
-		Print((uint8_t*)") ");
-		Print((uint8_t*)&Global_u8Alarms[LOCAL_u8LoopIterator]);
-	}
-	
- }
 
 
 
@@ -333,49 +271,3 @@ void APP_FirstSetUp(void)
 
 
 
-
-
-//  uint8_t RX_Data = '1' ;
-
-// 	 	uint8_t password[5] = "1234";
-
-
-
-
-
-// 	 	while(1)
-// 	 	{
-
-// 	 		Print("\r\n please enter the   number : ");
-// 	 		Input(&RX_Data ,1);
-// 	 		Print("\r\n   the   number is  : ");
-// 	 		SendChar(RX_Data);
-
-// 	 		Print("\r\n please enter the   password : ");
-// 	 		Input(password , 4);
-// 	 		Print("\r\n  the   password is : ");
-// 	 		Print( password);
-
-
-
-
-// 	 		if(RX_Data == '1')
-// 	 		{
-// 	 			GPIO_u8SetPinValue(PORTA, PIN5, HIGH);
-
-// 	 		}
-
-// 	 		else if (RX_Data == '2')
-// 	 		{
-// 	 			GPIO_u8SetPinValue(PORTA, PIN5, LOW);
-
-
-
-// 	 		}
-
-// 	 	//	SYSTIC_delay_ms(1000);
-
-
-// 	 	}
-
-	
