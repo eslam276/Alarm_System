@@ -176,6 +176,7 @@ void SRV_ShowTimeNDate(void)
 	}
 	Print (  (uint8_t*)"\r\n Time and Date:  ");
 	//Send( Local_u8StringBridge ,14);
+	SendOUT(Local_u8StringBridge ,14);
 	Print_Time_Date(Local_u8StringBridge);
 }
 
@@ -291,10 +292,21 @@ void SysTick_Handler(void)
 	uint8_t Local_u8Index1,Local_u8Index2;
 	uint8_t Local_u8Validate=0;
 	uint8_t Local_u8CurrentTD[7]={0};
-
-	RTC_ReadTimeDate(&I2C1_SysConfig, &RTC_DS1307_Config, Local_u8CurrentTD);
+	uint8_t Local_u8StringBridge[14]={0};
+	uint8_t Local_u8Iterator;
 
 	Local_u8CurrentTD[2] &=~ (0x60);
+	
+
+
+	RTC_ReadTimeDate(&I2C1_SysConfig, &RTC_DS1307_Config, Local_u8CurrentTD);
+	for(Local_u8Iterator=0;Local_u8Iterator <= RECEIVED_RTC_DATA_NUMBER;Local_u8Iterator++)
+		{
+			//local_u8TimeNDate[Local_u8Iterator] = BCDToDecimal(local_u8TimeNDate[Local_u8Iterator]);
+			HexToString(Local_u8CurrentTD[Local_u8Iterator],&Local_u8StringBridge[Local_u8Iterator*2] );
+		}
+		SendOUT(Local_u8StringBridge ,14);
+
 	for(Local_u8Index1=0 ; Local_u8Index1<5 ; Local_u8Index1++)
 	{
 		for(Local_u8Index2=0 ; Local_u8Index2<7 ; Local_u8Index2++)
@@ -310,7 +322,11 @@ void SysTick_Handler(void)
 			}
 			if(Local_u8Validate == 7)
 			{
+				SendOUT(Local_u8StringBridge ,14);
 				Print( (uint8_t*)"\r\n ALARM NOTIFICATION   ");
+				GPIO_u8SetPinValue(PORTA, PIN5 , LOW);
+				SYSTIC_delay_ms(500);
+				GPIO_u8SetPinValue(PORTA, PIN5 , HIGH);
 			}
 		}
 	}
