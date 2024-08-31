@@ -7,6 +7,7 @@
 #include "Service_prv.h"
 #include "SYSTIC_interface.h"
 #include "GPIO_interface.h"
+#include "defines.h"
 
 
 extern GPIO_PIN_CFG_t PINA5 ;
@@ -17,62 +18,100 @@ uint8_t Alarm[5][7]={0};
 
 
 
-void Print(uint8_t* Copy_pu8String)
+uint8_t Print(uint8_t* Copy_pu8String)
 {
-	USART_voidTransmitStringSynch(USART_2 , Copy_pu8String);
-}
-
-void Print_Time_Date(uint8_t* Copy_pu8String)
-{
-	SendChar(Copy_pu8String[4]);
-	SendChar(Copy_pu8String[5]);
-	Print(":");
-	SendChar(Copy_pu8String[2]);
-	SendChar(Copy_pu8String[3]);
-	Print(":");
-	SendChar(Copy_pu8String[0]);
-	SendChar(Copy_pu8String[1]);
-	Print("  ");
-
-	switch(Copy_pu8String[7])
+	uint8_t Local_u8ErrorState = OK;
+	if ( Copy_pu8String != NULL)
 	{
-	case '1' :
-		Print("Monday  ");
-		break;
-	case '2':
-		Print("Tuesday  ");
-		break;
-	case '3':
-		Print("Wednesday  ");
-		break;
-	case '4':
-		Print("Thursday  ");
-		break;
-	case '5':
-		Print("Friday  ");
-		break;
-	case '6':
-		Print("Saturday  ");
-		break;
-	case '7':
-		Print("Sunday  ");
-		break;
+		USART_voidTransmitStringSynch(USART_2 , Copy_pu8String);
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
 	}
 
-	SendChar(Copy_pu8String[8]);
-	SendChar(Copy_pu8String[9]);
-	Print("/");
-	SendChar(Copy_pu8String[10]);
-	SendChar(Copy_pu8String[11]);
-	Print("/");
-	SendChar(Copy_pu8String[12]);
-	SendChar(Copy_pu8String[13]);
-	Print("  ");
+	return Local_u8ErrorState ;
+	
+}
+
+uint8_t Print_Time_Date(uint8_t* Copy_pu8String)
+{
+
+	uint8_t Local_u8ErrorState = OK;
+	if ( Copy_pu8String != NULL)
+	{
+		SendChar(Copy_pu8String[4]);
+		SendChar(Copy_pu8String[5]);
+		Print(":");
+		SendChar(Copy_pu8String[2]);
+		SendChar(Copy_pu8String[3]);
+		Print(":");
+		SendChar(Copy_pu8String[0]);
+		SendChar(Copy_pu8String[1]);
+		Print("  ");
+
+		switch(Copy_pu8String[7])
+		{
+		case '1' :
+			Print("Monday  ");
+			break;
+		case '2':
+			Print("Tuesday  ");
+			break;
+		case '3':
+			Print("Wednesday  ");
+			break;
+		case '4':
+			Print("Thursday  ");
+			break;
+		case '5':
+			Print("Friday  ");
+			break;
+		case '6':
+			Print("Saturday  ");
+			break;
+		case '7':
+			Print("Sunday  ");
+			break;
+		}
+
+		SendChar(Copy_pu8String[8]);
+		SendChar(Copy_pu8String[9]);
+		Print("/");
+		SendChar(Copy_pu8String[10]);
+		SendChar(Copy_pu8String[11]);
+		Print("/");
+		SendChar(Copy_pu8String[12]);
+		SendChar(Copy_pu8String[13]);
+		Print("  ");
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
+	}
+
+	return Local_u8ErrorState ;
+
+
+	
 
 }
-void Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size)
+uint8_t Input(uint8_t* Copy_pu8String , uint8_t Copy_u8size)
 {
-	USART_u8ReceiveBufferSynch(USART_2 , Copy_pu8String  , Copy_u8size );
+
+	uint8_t Local_u8ErrorState = OK;
+	if ( Copy_pu8String != NULL)
+	{
+		USART_u8ReceiveBufferSynch(USART_2 , Copy_pu8String  , Copy_u8size );
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
+	}
+
+	return Local_u8ErrorState ;
+
+	
 }
 
 
@@ -88,30 +127,44 @@ void SendCharLogin(uint8_t Copy_u8DataChar)
 
 
 
-void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
+uint8_t InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 {
-	uint8_t LOCAL_u8LoopIterator = 0 ;
 
-	USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
+	uint8_t Local_u8ErrorState = OK;
 
-
-	while(Copy_pu8String[LOCAL_u8LoopIterator] != '\r' )
+	if ( Copy_pu8String != NULL)
 	{
-
-
-		LOCAL_u8LoopIterator++;
-
-		if (LOCAL_u8LoopIterator == Copy_u8MaxSize - 1 )
-		{
-			break; 
-		}
+		uint8_t LOCAL_u8LoopIterator = 0 ;
 
 		USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
 
 
+		while(Copy_pu8String[LOCAL_u8LoopIterator] != '\r' )
+		{
+
+
+			LOCAL_u8LoopIterator++;
+
+			if (LOCAL_u8LoopIterator == Copy_u8MaxSize - 1 )
+			{
+				break; 
+			}
+
+			USART_u8ReceiveCharSynch(USART_2 , &Copy_pu8String[LOCAL_u8LoopIterator]);
+
+
+		}
+
+		Copy_pu8String[LOCAL_u8LoopIterator] = 0 ;
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
 	}
 
-	Copy_pu8String[LOCAL_u8LoopIterator] = 0 ;
+	return Local_u8ErrorState ;
+
+	
 }
 
 
@@ -121,17 +174,80 @@ void InputString(uint8_t* Copy_pu8String , uint8_t Copy_u8MaxSize)
 
 
 
-void Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
+uint8_t Send(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
 {
-	USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
+
+	uint8_t Local_u8ErrorState = OK;
+	if ( Copy_pu8Buffer != NULL)
+	{
+		USART_voidTransmitBufferSynch( USART_2 ,  Copy_pu8Buffer  ,  Copy_u8size );
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
+	}
+
+	return Local_u8ErrorState ;
+	
 
 }
-void SendOUT(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
+uint8_t SendOUT(uint8_t* Copy_pu8Buffer ,  uint8_t Copy_u8size )
 {
-	USART_voidTransmitBufferSynch( UART_4 ,  Copy_pu8Buffer  ,  Copy_u8size );
+	uint8_t Local_u8ErrorState = OK;
+	if ( Copy_pu8Buffer != NULL)
+	{
+		USART_voidTransmitBufferSynch( UART_4 ,  Copy_pu8Buffer  ,  Copy_u8size );
+	}
+	else
+	{
+		Local_u8ErrorState = NULL_PTR_ERR;
+	}
+
+	return Local_u8ErrorState ;
+	
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+**********************************************************
+							Yousef
+**********************************************************
+
+
+
+*/
 
 
 
