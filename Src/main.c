@@ -68,7 +68,7 @@ int main(void)
 			if(Read_Pin== PIN_LOW)
 			{
 				DisplayAlarmInfo();
-				LED_Toggle(PORTC, PIN14);
+				LED_On(PORTC, PIN14);
 			}
 		}
 	}
