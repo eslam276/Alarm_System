@@ -1,4 +1,4 @@
-../Src/LED_prog.c:31:6:LED_Init	24	static
-../Src/LED_prog.c:45:6:LED_On	16	static
-../Src/LED_prog.c:50:6:LED_Off	16	static
-../Src/LED_prog.c:55:6:LED_Toggle	16	static
+../Src/LED_prog.c:27:6:LED_Init	24	static
+../Src/LED_prog.c:41:6:LED_On	16	static
+../Src/LED_prog.c:46:6:LED_Off	16	static
+../Src/LED_prog.c:51:6:LED_Toggle	16	static

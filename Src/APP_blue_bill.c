@@ -1,15 +1,16 @@
-/*
- * APP_blue_bill.c
- *
- *  Created on: Aug 9, 2024
- *      Author: user
- */
+/**************************************************************/
+/**************************************************************/
+/*********		Author: Mahmoud Hafez   	*******************/
+/*********		File: APP_blue_bill.c		*******************/
+/*********		Version: 1.00				*******************/
+/**************************************************************/
+/**************************************************************/
+
 #include <stdint.h>
 #include "stm32f103xx.h"
 #include "ErrType.h"
 #include "RCC_Interface.h"
 #include "AFIO_Interface.h"
-#include "SCB_interface.h"
 #include "EXTI_Interface.h"
 #include "GPIO_interface.h"
 #include "NVIC_interface.h"
@@ -75,7 +76,7 @@ void Interrupts_Init(void)
 {
 	NVIC_EnableIRQ(NVIC_IRQ_SPI1);
 	NVIC_EnableIRQ(NVIC_IRQ_EXTI15_10);
-	NVIC_EnableIRQ(NVIC_IRQ_USART2);
+	NVIC_EnableIRQ(NVIC_IRQ_USART1);
 }
 void DisplayAlarmInfo(void)
 {
@@ -148,10 +149,6 @@ void Display_Date(void)
 void TURN_ON_LED(void)
 {
 	LED_On(PORTA, PIN2);
-}
-void Receive_withInterrupt(void)
-{
-  /*	SPI_Receive_IT(SPICONFIG, RecivedData, 30, &SPI1_CallBack);*/
 }
 void CLEAR_DISPLAY(void)
 {

@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .comment      00000043  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00002dcd  00000000  00000000  00020078  2**0
+ 13 .debug_info   00002dbb  00000000  00000000  00020078  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00000d69  00000000  00000000  00022e45  2**0
+ 14 .debug_abbrev 00000d50  00000000  00000000  00022e33  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000368  00000000  00000000  00023bb0  2**3
+ 15 .debug_aranges 00000360  00000000  00000000  00023b88  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 00000271  00000000  00000000  00023f18  2**0
+ 16 .debug_rnglists 0000026b  00000000  00000000  00023ee8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00000999  00000000  00000000  00024189  2**0
+ 17 .debug_macro  0000098f  00000000  00000000  00024153  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00003c70  00000000  00000000  00024b22  2**0
+ 18 .debug_line   00003c4a  00000000  00000000  00024ae2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00005d77  00000000  00000000  00028792  2**0
+ 19 .debug_str    00005d4f  00000000  00000000  0002872c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00000abc  00000000  00000000  0002e50c  2**2
+ 20 .debug_frame  00000a9c  00000000  00000000  0002e47c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000067  00000000  00000000  0002efc8  2**0
+ 21 .debug_line_str 00000067  00000000  00000000  0002ef18  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -211,8 +211,8 @@ void Interrupts_Init(void)
 	NVIC_EnableIRQ(NVIC_IRQ_EXTI15_10);
  8000232:	2028      	movs	r0, #40	; 0x28
  8000234:	f000 fd58 	bl	8000ce8 <NVIC_EnableIRQ>
-	NVIC_EnableIRQ(NVIC_IRQ_USART2);
- 8000238:	2026      	movs	r0, #38	; 0x26
+	NVIC_EnableIRQ(NVIC_IRQ_USART1);
+ 8000238:	2025      	movs	r0, #37	; 0x25
  800023a:	f000 fd55 	bl	8000ce8 <NVIC_EnableIRQ>
 }
  800023e:	bf00      	nop
@@ -477,10 +477,6 @@ void TURN_ON_LED(void)
  800040a:	bd80      	pop	{r7, pc}
 
 0800040c <CLEAR_DISPLAY>:
-void Receive_withInterrupt(void)
-{
-  /*	SPI_Receive_IT(SPICONFIG, RecivedData, 30, &SPI1_CallBack);*/
-}
 void CLEAR_DISPLAY(void)
 {
  800040c:	b580      	push	{r7, lr}

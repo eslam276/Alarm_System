@@ -7,7 +7,6 @@
 "./Src/LED_prog.o"
 "./Src/NVIC_program.o"
 "./Src/RCC_Program.o"
-"./Src/SCB_program.o"
 "./Src/SYSTIC_program.o"
 "./Src/USART_program.o"
 "./Src/main.o"

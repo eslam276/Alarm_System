@@ -14,7 +14,6 @@ C_SRCS += \
 ../Src/LED_prog.c \
 ../Src/NVIC_program.c \
 ../Src/RCC_Program.c \
-../Src/SCB_program.c \
 ../Src/SYSTIC_program.c \
 ../Src/USART_program.c \
 ../Src/main.c \
@@ -31,7 +30,6 @@ OBJS += \
 ./Src/LED_prog.o \
 ./Src/NVIC_program.o \
 ./Src/RCC_Program.o \
-./Src/SCB_program.o \
 ./Src/SYSTIC_program.o \
 ./Src/USART_program.o \
 ./Src/main.o \
@@ -48,7 +46,6 @@ C_DEPS += \
 ./Src/LED_prog.d \
 ./Src/NVIC_program.d \
 ./Src/RCC_Program.d \
-./Src/SCB_program.d \
 ./Src/SYSTIC_program.d \
 ./Src/USART_program.d \
 ./Src/main.d \
@@ -63,7 +60,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/AFIO_Program.cyclo ./Src/AFIO_Program.d ./Src/AFIO_Program.o ./Src/AFIO_Program.su ./Src/APP_blue_bill.cyclo ./Src/APP_blue_bill.d ./Src/APP_blue_bill.o ./Src/APP_blue_bill.su ./Src/BZR_prog.cyclo ./Src/BZR_prog.d ./Src/BZR_prog.o ./Src/BZR_prog.su ./Src/CLCD_program.cyclo ./Src/CLCD_program.d ./Src/CLCD_program.o ./Src/CLCD_program.su ./Src/EXTI_Program.cyclo ./Src/EXTI_Program.d ./Src/EXTI_Program.o ./Src/EXTI_Program.su ./Src/GPIO_Program.cyclo ./Src/GPIO_Program.d ./Src/GPIO_Program.o ./Src/GPIO_Program.su ./Src/LED_prog.cyclo ./Src/LED_prog.d ./Src/LED_prog.o ./Src/LED_prog.su ./Src/NVIC_program.cyclo ./Src/NVIC_program.d ./Src/NVIC_program.o ./Src/NVIC_program.su ./Src/RCC_Program.cyclo ./Src/RCC_Program.d ./Src/RCC_Program.o ./Src/RCC_Program.su ./Src/SCB_program.cyclo ./Src/SCB_program.d ./Src/SCB_program.o ./Src/SCB_program.su ./Src/SYSTIC_program.cyclo ./Src/SYSTIC_program.d ./Src/SYSTIC_program.o ./Src/SYSTIC_program.su ./Src/USART_program.cyclo ./Src/USART_program.d ./Src/USART_program.o ./Src/USART_program.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+	-$(RM) ./Src/AFIO_Program.cyclo ./Src/AFIO_Program.d ./Src/AFIO_Program.o ./Src/AFIO_Program.su ./Src/APP_blue_bill.cyclo ./Src/APP_blue_bill.d ./Src/APP_blue_bill.o ./Src/APP_blue_bill.su ./Src/BZR_prog.cyclo ./Src/BZR_prog.d ./Src/BZR_prog.o ./Src/BZR_prog.su ./Src/CLCD_program.cyclo ./Src/CLCD_program.d ./Src/CLCD_program.o ./Src/CLCD_program.su ./Src/EXTI_Program.cyclo ./Src/EXTI_Program.d ./Src/EXTI_Program.o ./Src/EXTI_Program.su ./Src/GPIO_Program.cyclo ./Src/GPIO_Program.d ./Src/GPIO_Program.o ./Src/GPIO_Program.su ./Src/LED_prog.cyclo ./Src/LED_prog.d ./Src/LED_prog.o ./Src/LED_prog.su ./Src/NVIC_program.cyclo ./Src/NVIC_program.d ./Src/NVIC_program.o ./Src/NVIC_program.su ./Src/RCC_Program.cyclo ./Src/RCC_Program.d ./Src/RCC_Program.o ./Src/RCC_Program.su ./Src/SYSTIC_program.cyclo ./Src/SYSTIC_program.d ./Src/SYSTIC_program.o ./Src/SYSTIC_program.su ./Src/USART_program.cyclo ./Src/USART_program.d ./Src/USART_program.o ./Src/USART_program.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
 
 .PHONY: clean-Src
 
